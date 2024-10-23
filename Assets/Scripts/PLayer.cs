@@ -5,16 +5,12 @@ using UnityEngine;
 public class PLayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    private Rigidbody2D rigidbody;
-    [SerializeField]
-    private float velocidadeMovimento;
-    [SerializeField]
-    private ManaControl mana;
+    [SerializeField] private Rigidbody2D rigidbody;
+    [SerializeField] private float velocidadeMovimento;
+    [SerializeField] private Transform transform;
+    [SerializeField] private ManaControl mana;
     public bool andando;
     public Shockwave shockwavePrefab;
-    [SerializeField]
-    private Transform transform;
     public int swManaCost;
     void Start()
     {

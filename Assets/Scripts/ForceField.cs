@@ -21,7 +21,7 @@ public class ForceField : MonoBehaviour
     void Update()
     {
         // Check if 'E' key is held down
-        if (Input.GetKey(KeyCode.E) && mana.manaAtual > 0)
+        if (Input.GetKey(KeyCode.Mouse1) && mana.manaAtual > 0)
         {
             timer += Time.deltaTime;
             if (timer >= intervaloMana)

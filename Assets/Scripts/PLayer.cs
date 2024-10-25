@@ -28,6 +28,11 @@ public class PLayer : MonoBehaviour
             SpawnShockwave();
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 1.4f);
+    }
     void Andar()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");

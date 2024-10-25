@@ -5,31 +5,24 @@ using UnityEngine;
 public class LifeControl : MonoBehaviour
 {
     [SerializeField]
-    public int vidaMax = 10;
+    public int vidaMax;
     public int vidaAtual;
     // Start is called before the first frame update
     void Start()
     {
-        vidaAtual = vidaMax - 1;
+        vidaAtual = vidaMax;
     }
+    void Update (){
 
-    // Update is called once per frame
-    public void RecuperarVida(int recuperacao)
-    {
-        if (vidaAtual + recuperacao < vidaMax)
-        {
-            vidaAtual = vidaAtual + recuperacao;
-        }
-        else
-        {
-            vidaAtual = vidaMax;
-        }
+        Morrer();
     }
-    public void SofrerDano(int dano)
+    // Update is called once per frame
+
+    public void Morrer()
     {
-        if (vidaAtual - dano > 0)
+        if(vidaAtual <= 0)
         {
-            vidaAtual = vidaAtual - dano;
+            Destroy(gameObject);
         }
     }
 }

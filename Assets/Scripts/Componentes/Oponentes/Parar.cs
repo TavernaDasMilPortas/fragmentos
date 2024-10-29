@@ -7,6 +7,6 @@ public class Parar : MonoBehaviour
     [SerializeField] public OponenteCore oponente;
     public void PararMovimento()
     {
-       oponente.Rigidbody.velocity = Vector2.zero;
+       oponente.agent.velocity = Vector2.zero;
     }
 }

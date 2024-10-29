@@ -6,25 +6,23 @@ public class Patrulhar : MonoBehaviour
 {
     [SerializeField] public OponenteCore oponente;
     public float reachDistance = 1f; // Distância para considerar um waypoint alcançado
-    private int currentWaypointIndex = 0;
+    public int currentWaypointIndex = 0;
     [SerializeField] Transform[] waypoints;
     [SerializeField] private Parar parar;
+
     public void PatrulharArea()
     {
         if (waypoints.Length == 0) return;
 
-        // Move o inimigo em direção ao ponto atual
+        // Obtém o waypoint de destino atual
         Transform targetWaypoint = waypoints[currentWaypointIndex];
-        Vector3 direction = targetWaypoint.position - transform.position;
-
-        // Move o inimigo
-        oponente.Rigidbody.velocity = direction.normalized * oponente.Velocidade;
-
-        // Verifica se o inimigo alcançou o ponto
-        if (direction.magnitude < reachDistance)
+        oponente.agent.SetDestination(targetWaypoint.position);
+        oponente.agent.speed = oponente.Velocidade;
+        // Verifica se o inimigo alcançou o ponto usando `remainingDistance`
+        if (!oponente.agent.pathPending && oponente.agent.remainingDistance < reachDistance)
         {
-            parar.PararMovimento();
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; // Volta ao primeiro quando chegar ao final
+            parar.PararMovimento(); // Chamando a função para parar o movimento se necessário
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; // Avança para o próximo waypoint
         }
     }
 }

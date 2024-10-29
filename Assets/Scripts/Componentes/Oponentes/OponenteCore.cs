@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class OponenteCore : MonoBehaviour
 {
     
@@ -13,7 +13,14 @@ public class OponenteCore : MonoBehaviour
     [SerializeField] private float raioVisao;
     [SerializeField] private LayerMask layermask;
     [SerializeField] private Transform alvo;
+    public NavMeshAgent agent;
 
+    void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
     // Getter e Setter para vida
     public GerenciarVida Vida
     {

@@ -8,7 +8,6 @@ public class Caminhante : OponenteCore
     [SerializeField] private Patrulhar patrulhar;
     [SerializeField] private Perseguir perseguir;
     [SerializeField] private Procurar procurar;
-    NavMeshAgent agent;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +18,7 @@ public class Caminhante : OponenteCore
         this.DistanciaMinima = 1.2f;
         this.RaioVisao = 5f;
         this.TempoFoco = 3f;
- 
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+
     }
 
     // Update is called once per frame
@@ -31,11 +27,6 @@ public class Caminhante : OponenteCore
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();
-            Debug.Log("Mudança de vida detectada. Ativando Agro.");
-        }
-        else
-        {
-            Debug.Log("Mudança de vida nao dectectada");
         }
         if (agro.tempoRestanteFoco <= 0)
         {

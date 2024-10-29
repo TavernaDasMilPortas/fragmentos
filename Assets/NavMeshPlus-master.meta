@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/NavMeshPlus-master.meta
 guid: 976202a9478742e4c895f1d5af9fdb7a
+========
+guid: 65a507adf95d611448cff6921bf50793
+>>>>>>>> 60c166c9c802c30548f8054e15549de59c0e24c5:Assets/Scripts/Componentes.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

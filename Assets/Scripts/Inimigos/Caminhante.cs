@@ -31,6 +31,11 @@ public class Caminhante : OponenteCore
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();
+            Debug.Log("Mudança de vida detectada. Ativando Agro.");
+        }
+        else
+        {
+            Debug.Log("Mudança de vida nao dectectada");
         }
         if (agro.tempoRestanteFoco <= 0)
         {

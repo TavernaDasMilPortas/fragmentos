@@ -14,7 +14,7 @@ public class Caminhante : OponenteCore
         this.Vida.vidaMax = 10;
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.Vida.vidaAnterior = this.Vida.vidaMax;
-        this.Velocidade = 2f;
+        this.Velocidade = 2.1f;
         this.DistanciaMinima = 1.2f;
         this.RaioVisao = 5f;
         this.TempoFoco = 3f;

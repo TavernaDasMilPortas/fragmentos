@@ -30,7 +30,7 @@ public class AnimacaoJogador : MonoBehaviour
         movimento = movimento.normalized;
         animator.SetFloat("Horizontal", movimento.x);
         animator.SetFloat("Vertical", movimento.y);
-        animator.SetBool("Andando", player.andando);
+        animator.SetBool("Andando", player.Andando);
 
  
     }

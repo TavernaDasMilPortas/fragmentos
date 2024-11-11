@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ForceField : MonoBehaviour
+public class ForceField : MonoBehaviour, IHabilidade
 {
    
     [SerializeField] ManaControl mana;
@@ -18,7 +18,7 @@ public class ForceField : MonoBehaviour
         manaCost = 1;
     }
 
-    void Update()
+    public void UsarHabilidade()
     {
         // Check if 'E' key is held down
         if (Input.GetKey(KeyCode.Mouse1) && mana.manaAtual > 0)

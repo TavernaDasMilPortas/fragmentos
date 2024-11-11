@@ -2,27 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLayer : MonoBehaviour
+public class PLayer : PlayerCore
 {
     // Start is called before the first frame update
-    [SerializeField] private Rigidbody2D rigidbody;
-    [SerializeField] private float velocidadeMovimento;
-    [SerializeField] private Transform transform;
-    [SerializeField] private ManaControl mana;
-    public bool andando;
+
     public Shockwave shockwavePrefab;
     public int swManaCost;
+    [SerializeField] Andar andar;
+    [SerializeField] DisparoProjetil disparar;
     void Start()
     {
-        velocidadeMovimento = 0;
-        andando = true;
+        this.Vida.vidaMax = 10;
+        this.Vida.vidaAtual = this.Vida.vidaMax;
+        this.VelocidadeMovimento = 2f;
+        Andando = false;
         swManaCost = shockwavePrefab.manaCost;
+        this.FragmentoAtual.IniciarFragmento();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Andar();
+        andar.Deslocar();
+        if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                FragmentoAtual.AtivarHabilidade1();
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                //Interagir com ambiente
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                FragmentoAtual.AtivarHabilidade2();
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                FragmentoAtual.Disparar();
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                FragmentoAtual.AtivarHabilidade3();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SpawnShockwave();
@@ -33,36 +58,16 @@ public class PLayer : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position, 1.4f);
     }
-    void Andar()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector2 direcao = new Vector2(horizontal, vertical);
-        direcao = direcao.normalized;
-        if (Input.GetKey(KeyCode.W) == true || Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.S) == true || Input.GetKey(KeyCode.D) == true)
-        {
-            andando = true;
-            velocidadeMovimento = 2;
-        }
-        else
-        {
-            andando = false;
-            velocidadeMovimento = 0;
-        }
-        this.rigidbody.velocity = direcao * velocidadeMovimento;
 
-    }
     void SpawnShockwave()
     {
-        if (mana.manaAtual - swManaCost >= 0)
+        if (Mana.manaAtual - swManaCost >= 0)
         {
             Shockwave shockWave = Instantiate(shockwavePrefab, this.transform.position, Quaternion.identity);
-            mana.GastarMana(shockWave.manaCost);
+            Mana.GastarMana(shockWave.manaCost);
         }
         // Instantiate the shockwave at the player's position (or a specific point)
-
-
     }
-    }
+}
 
 

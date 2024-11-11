@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648066145188319989}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.509, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2662109779679321202}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3203239716479043677
 GameObject:
@@ -57,7 +57,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3203239716479043677}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.398, y: 0, z: 0}
   m_LocalScale: {x: 0.25165355, y: 0.25165355, z: 0.25165355}
@@ -65,6 +64,7 @@ Transform:
   m_Children:
   - {fileID: 5846742665405782653}
   m_Father: {fileID: 1884656007603539956}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8616717540984958652
 SpriteRenderer:
@@ -150,6 +150,8 @@ MonoBehaviour:
   velocidadeProjetil: 15
   tempoDeDestruicao: 1.5
   Atirador: {fileID: 6888085195443465096}
+  player: {fileID: 769849489488743456}
+  tipo: 
 --- !u!1 &6888085195443465096
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +171,9 @@ GameObject:
   - component: {fileID: 2956247159040691627}
   - component: {fileID: 4015368817366726973}
   - component: {fileID: 6760428077040061952}
+  - component: {fileID: 2388468869583570466}
+  - component: {fileID: 210820427574845255}
+  - component: {fileID: 6163233656740385374}
   m_Layer: 3
   m_Name: Momo
   m_TagString: Player
@@ -183,7 +188,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6888085195443465096}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.49, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -192,6 +196,7 @@ Transform:
   - {fileID: 8381119342793235428}
   - {fileID: 2662109779679321202}
   m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3843815295858577452
 SpriteRenderer:
@@ -342,12 +347,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 211650273317238561}
   velocidadeMovimento: 0
+  velocidadeAtual: 0
   transform: {fileID: 1884656007603539956}
   mana: {fileID: 6760428077040061952}
-  andando: 0
+  vida: {fileID: 210820427574845255}
+  fragmentos:
+  - {fileID: 6163233656740385374}
+  fragmentoAtual: {fileID: 0}
   shockwavePrefab: {fileID: 5548870479095453994, guid: c8b7e893e9037374386305d0540a49a8,
     type: 3}
   swManaCost: 0
+  andar: {fileID: 2388468869583570466}
+  disparar: {fileID: 5279869367535806061}
 --- !u!114 &6528556467783412425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,9 +387,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f7cee49ae3ac14da4de9a5a81739a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mana: {fileID: 6760428077040061952}
+  player: {fileID: 769849489488743456}
   teleportRange: 1
   teleportCooldown: 2
+  lastTeleportTime: 0
   manaCost: 5
 --- !u!114 &2956247159040691627
 MonoBehaviour:
@@ -426,6 +438,51 @@ MonoBehaviour:
   manaAtual: 0
   intervalo: 1
   recuperacao: 1
+--- !u!114 &2388468869583570466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6888085195443465096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670b40b7b9b57c549a3c2eb11671b6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 769849489488743456}
+--- !u!114 &210820427574845255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6888085195443465096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfeed82bfe92a9409190970db211cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMax: 0
+  vidaAtual: 0
+  vidaAnterior: 0
+--- !u!114 &6163233656740385374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6888085195443465096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9516eef1e9a13ec4bb827de1bac85abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Nome: 
+  disparo: {fileID: 5279869367535806061}
+  teleportar: {fileID: 8386453775999219430}
+  campoForca: {fileID: 2956247159040691627}
+  player: {fileID: 769849489488743456}
 --- !u!1 &8209190479223419694
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,13 +507,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8209190479223419694}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.02, y: 0.0065, z: 0}
   m_LocalScale: {x: 0.60434055, y: 1.0153297, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1884656007603539956}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &656208535298734113
 SpriteRenderer:

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class OponenteCore : MonoBehaviour
 {
     
-    private float velocidade;
+    public float velocidade;
     private float distanciaMinima;
     private float tempoFoco;
     [SerializeField] private GerenciarVida vida;
@@ -15,7 +15,7 @@ public class OponenteCore : MonoBehaviour
     [SerializeField] private Transform alvo;
     public NavMeshAgent agent;
 
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;

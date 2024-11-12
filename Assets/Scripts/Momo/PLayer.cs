@@ -15,6 +15,7 @@ public class PLayer : PlayerCore
         this.Vida.vidaMax = 10;
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.VelocidadeMovimento = 2f;
+        this.DanoDisparo = 2;
         Andando = false;
         swManaCost = shockwavePrefab.manaCost;
         this.FragmentoAtual.IniciarFragmento();

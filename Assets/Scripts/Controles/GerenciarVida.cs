@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GerenciarVida : MonoBehaviour
 {
@@ -12,14 +13,21 @@ public class GerenciarVida : MonoBehaviour
 
     void Update()
     {
-
         Morrer();
     }
     public void Morrer()
     {
         if (vidaAtual <= 0)
         {
-            Destroy(gameObject);
+            if (CompareTag("Player"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 

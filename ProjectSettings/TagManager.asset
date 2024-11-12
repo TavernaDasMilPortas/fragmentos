@@ -15,10 +15,10 @@ TagManager:
   - Personagem
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - obstaculos
+  - paredes
+  - paredes sem colisor
+  - fundo
   - 
   - 
   - 

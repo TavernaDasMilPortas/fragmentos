@@ -6,13 +6,14 @@ public class CameraFollow : MonoBehaviour
 {
     public float FollowSpeed = 100f;
     public float yOffset = 1f;
-    public Transform target;
+    public Transform jogador;
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        Vector3 newPos = new Vector3(target.position.x, target.position.y + yOffset, -10f);
-        transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+        Vector3 novaPosicao = new Vector3(jogador.position.x, jogador.position.y, transform.position.z);
+        novaPosicao.x = Mathf.Round(novaPosicao.x * 100f) / 100f;
+        novaPosicao.y = Mathf.Round(novaPosicao.y * 100f) / 100f;
+        transform.position = novaPosicao;
     }
 }
 

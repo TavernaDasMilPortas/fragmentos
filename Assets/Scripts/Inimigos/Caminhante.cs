@@ -8,6 +8,7 @@ public class Caminhante : OponenteCore
     [SerializeField] private Patrulhar patrulhar;
     [SerializeField] private Perseguir perseguir;
     [SerializeField] private Procurar procurar;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,10 @@ public class Caminhante : OponenteCore
         {
             perseguir.PerseguirAlvo();
         }
+        if (agent.remainingDistance <= this.DistanciaMinima)
+        {
+
+        }
     }
 
     private void OnDrawGizmos()
@@ -49,5 +54,12 @@ public class Caminhante : OponenteCore
         {
             Gizmos.DrawLine(this.transform.position, this.Alvo.position);
         }
+    }
+
+
+    public void Atacar()
+    {
+
+
     }
 }

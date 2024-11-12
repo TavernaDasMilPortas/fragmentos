@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,6 +257,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caminhante (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.252491
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.037646834
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -864,6 +885,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caminhante
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24349,12 +24385,12 @@ PrefabInstance:
     - target: {fileID: 1884656007603539956, guid: b7d4adf7259c7e24885478223034f234,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.58
+      value: -9.272
       objectReference: {fileID: 0}
     - target: {fileID: 1884656007603539956, guid: b7d4adf7259c7e24885478223034f234,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.81
+      value: 0.502
       objectReference: {fileID: 0}
     - target: {fileID: 1884656007603539956, guid: b7d4adf7259c7e24885478223034f234,
         type: 3}
@@ -27928,6 +27964,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caminhante (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.254717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.24124968
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169900415032276067, guid: 86350b410ebb4d647841dcd31c1e1c6a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.23669456
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

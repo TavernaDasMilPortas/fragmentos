@@ -34,21 +34,25 @@ public class GerenciarVida : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ValorDano dano = collision.gameObject.GetComponent<ValorDano>();
-        ValorCura cura = collision.gameObject.GetComponent<ValorCura>();
-        if (dano!=null)
+        if (this.CompareTag("Oponente"))
         {
-            if(vidaAtual - dano.valorDano > 0)
+            ValorDano dano = collision.gameObject.GetComponent<ValorDano>();
+            if (dano != null)
             {
-                vidaAtual -= dano.valorDano;
-            }
-            else
-            {
-                vidaAtual = 0;
+                if (vidaAtual - dano.valorDano > 0)
+                {
+                    vidaAtual -= dano.valorDano;
+                }
+                else
+                {
+                    vidaAtual = 0;
+                }
+
             }
 
         }
-        if(cura!=null)
+        ValorCura cura = collision.gameObject.GetComponent<ValorCura>();
+        if (cura!=null)
         {
             if (vidaAtual + cura.valorCura < vidaMax)
             {
@@ -71,6 +75,20 @@ public class GerenciarVida : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public void JogadorSofreDano(ValorDano dano)
+    {
+        Debug.Log("Vida atual:" + this.vidaAtual + "dano a ser sofrido" + dano.valorDano);
+        if (this.vidaAtual - dano.valorDano > 0)
+        {
+            this.vidaAtual -= dano.valorDano;
+            Debug.Log("vida pós tomar dano" + this.vidaAtual);
+        }
+        else
+        {
+            this.vidaAtual = 0;
         }
     }
 }

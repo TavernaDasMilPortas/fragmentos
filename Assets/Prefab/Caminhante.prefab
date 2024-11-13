@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 3712887462066320599}
   - component: {fileID: 595607176923516250}
   - component: {fileID: 428299836773738509}
+  - component: {fileID: 618186071365344055}
+  - component: {fileID: 3162201268700550899}
   m_Layer: 0
   m_Name: Caminhante
   m_TagString: Oponente
@@ -39,7 +41,8 @@ Transform:
   m_LocalPosition: {x: -2.01, y: 2.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3382567177232370126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7169900415032276067
@@ -85,7 +88,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.08699717, g: 0.26808158, b: 0.8018868, a: 1}
+  m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -192,6 +195,7 @@ MonoBehaviour:
   patrulhar: {fileID: 867264508260903406}
   perseguir: {fileID: 332775494746460471}
   procurar: {fileID: 7439528670229854328}
+  atacar: {fileID: 618186071365344055}
 --- !u!114 &7465213357762011585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +306,66 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &618186071365344055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040402864419200334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389af2942ee6a04499016c11e0684a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  DistanciaMaxAtaque: 0
+  dano: {fileID: 3162201268700550899}
+  oponente: {fileID: 2474435221210221891}
+  pontoAtaque: {fileID: 3382567177232370126}
+  countDownTime: 0
+  countDown: 0
+--- !u!114 &3162201268700550899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040402864419200334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f2fc985c10cb24899c7f6f115856a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valorDano: 2
+--- !u!1 &7527029823408018788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3382567177232370126}
+  m_Layer: 0
+  m_Name: Ponto de ataque
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3382567177232370126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527029823408018788}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.44, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5322535318942727477}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -8,6 +8,7 @@ public class Caminhante : OponenteCore
     [SerializeField] private Patrulhar patrulhar;
     [SerializeField] private Perseguir perseguir;
     [SerializeField] private Procurar procurar;
+    [SerializeField] private AtaqueMelle atacar;
     
     // Start is called before the first frame update
     void Start()
@@ -16,15 +17,18 @@ public class Caminhante : OponenteCore
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.Vida.vidaAnterior = this.Vida.vidaMax;
         this.Velocidade = 2.1f;
-        this.DistanciaMinima = 1.2f;
+        this.DistanciaMinima = 1.5f;
         this.RaioVisao = 5f;
         this.TempoFoco = 3f;
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+       
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();
@@ -40,11 +44,10 @@ public class Caminhante : OponenteCore
         else
         {
             perseguir.PerseguirAlvo();
-        }
-        if (agent.remainingDistance <= this.DistanciaMinima)
-        {
+            atacar.VerificarPossibilidadeAtaque();
 
         }
+
     }
 
     private void OnDrawGizmos()

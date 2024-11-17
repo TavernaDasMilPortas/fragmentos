@@ -8,6 +8,9 @@ TagManager:
   - Dano
   - Momo
   - Oponente
+  - Hitbox
+  - Hurtbox
+  - Porta
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - paredes
   - paredes sem colisor
   - fundo
-  - 
+  - Itens
   - 
   - 
   - 
@@ -56,4 +59,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3345834859
+    locked: 0
+  - name: obstaculos
+    uniqueID: 2331264093
+    locked: 0
+  - name: Item
+    uniqueID: 1473067895
     locked: 0

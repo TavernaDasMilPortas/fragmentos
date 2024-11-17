@@ -1,66 +1,40 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AtaqueMelle : MonoBehaviour
 {
-    public float range;
-    public float DistanciaMaxAtaque;
+    public float DistanciaMaxAtaque; // Distância máxima para atacar
+    [SerializeField] private Transform hitboxSpawnPoint; // Posição da hitbox
+    [SerializeField] private float hitboxDuration = 0.01f; // Duração da hitbox
+    [SerializeField] private float attackCooldown = 2.0f; // Tempo de recarga do ataque
+    public bool canAttack = true; // Controle para evitar ataques consecutivos
     [SerializeField] private ValorDano dano;
     [SerializeField] private OponenteCore oponente;
-    [SerializeField] public Transform pontoAtaque; 
-    public float countDownTime;
-    public float countDown;
+    [SerializeField] private Hitbox hitbox;
 
-    private void Start()
+    void Start()
     {
-        countDownTime = 1.5f;
-        countDown = 0;
-        DistanciaMaxAtaque = 1.5f;
-        range = 2f;
+        DistanciaMaxAtaque = 2.5f;
+        hitbox.gameObject.SetActive(false); // Garante que a hitbox esteja desativada inicialmente
+        hitbox.dano = dano.valorDano; // Define o dano da hitbox
     }
+
     public void VerificarPossibilidadeAtaque()
-
     {
-        float distância = Vector2.Distance(this.transform.position, oponente.Alvo.position);
-        if (distância <= DistanciaMaxAtaque || distância == oponente.DistanciaMinima)
-        { 
-        countDown -= Time.deltaTime;
-        Renderer renderer = gameObject.GetComponent<Renderer>();
-        renderer.material.color = Color.red;
-        if (countDown <= 0)
+        float distancia = Vector2.Distance(this.transform.position, oponente.Alvo.position);
+        if (distancia <= oponente.DistanciaMinima || distancia <= DistanciaMaxAtaque && canAttack)
         {
-            
-
-            this.countDown = this.countDownTime;
-            Atacar();
-
-            }
-
-
+            StartCoroutine(Atacar());
         }
     }
-    public void Atacar()
+
+    public IEnumerator Atacar()
     {
-        Collider2D colisorJogador =  Physics2D.OverlapCircle(this.pontoAtaque.position, this.range, oponente.Layermask);
-        if (colisorJogador != null)
-        {
-
-            if (colisorJogador.CompareTag("Player"))
-            {
-                GerenciarVida vida = colisorJogador.GetComponent<GerenciarVida>();
-                vida.JogadorSofreDano(dano);
-                
-            }
-        }
-
-      
-    }
-
-    public void OnDrawGizmos()
-    {
-
-            Gizmos.DrawWireSphere(this.pontoAtaque.position, this.range);
-
+        canAttack = false;
+        hitbox.AtivarHitbox(); // Ativa a hitbox
+        yield return new WaitForSeconds(hitboxDuration);
+        hitbox.DesativarHitbox(); // Desativa a hitbox
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 }

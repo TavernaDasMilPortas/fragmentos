@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AnimacaoJogador : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D rigidbody2d;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;

@@ -7,7 +7,7 @@ public class Patrulhar : MonoBehaviour
     [SerializeField] public OponenteCore oponente;
     public float reachDistance = 1f; // Distância para considerar um waypoint alcançado
     public int currentWaypointIndex = 0;
-    [SerializeField] Transform[] waypoints;
+    [SerializeField] public Transform[] waypoints;
     [SerializeField] private Parar parar;
 
     public void PatrulharArea()

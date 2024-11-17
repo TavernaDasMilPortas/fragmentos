@@ -32,7 +32,7 @@ public class GerenciarVida : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void OnCollisionEnter2D(Collision2D collision)
+   /* private void OnCollisionEnter2D(Collision2D collision)
     {
         if (this.CompareTag("Oponente"))
         {
@@ -65,6 +65,7 @@ public class GerenciarVida : MonoBehaviour
 
         }
     }
+   */
     public bool ConferirMudancaVida(int vAtual, int vAnterior)
     {
         if (vAtual != vAnterior)
@@ -78,13 +79,11 @@ public class GerenciarVida : MonoBehaviour
         }
     }
 
-    public void JogadorSofreDano(ValorDano dano)
+    public void ReceberDano(int dano)
     {
-        Debug.Log("Vida atual:" + this.vidaAtual + "dano a ser sofrido" + dano.valorDano);
-        if (this.vidaAtual - dano.valorDano > 0)
+        if (this.vidaAtual - dano > 0)
         {
-            this.vidaAtual -= dano.valorDano;
-            Debug.Log("vida pós tomar dano" + this.vidaAtual);
+            this.vidaAtual -= dano;
         }
         else
         {

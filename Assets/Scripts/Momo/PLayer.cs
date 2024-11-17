@@ -10,6 +10,8 @@ public class PLayer : PlayerCore
     public int swManaCost;
     [SerializeField] Andar andar;
     [SerializeField] DisparoProjetil disparar;
+    [SerializeField] Interagir interagir;
+    public bool vInteragir = true;
     void Start()
     {
         this.Vida.vidaMax = 10;
@@ -25,6 +27,10 @@ public class PLayer : PlayerCore
     void Update()
     {
         andar.Deslocar();
+        if (vInteragir)
+        {
+            interagir.DetectarERealcarObjetoMaisProximo();
+        }
         if (Input.anyKeyDown)
         {
             if (Input.GetKeyDown(KeyCode.Q))
@@ -33,7 +39,11 @@ public class PLayer : PlayerCore
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                //Interagir com ambiente
+
+                if (vInteragir == true && interagir.objetoMaisProximo != null)
+                {
+                    interagir.objetoMaisProximo.Interagir();   
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {

@@ -9,7 +9,7 @@ public class Caminhante : OponenteCore
     [SerializeField] private Perseguir perseguir;
     [SerializeField] private Procurar procurar;
     [SerializeField] private AtaqueMelle atacar;
-    
+    public int danoAtaqueMelle;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,7 @@ public class Caminhante : OponenteCore
         this.DistanciaMinima = 1.5f;
         this.RaioVisao = 5f;
         this.TempoFoco = 3f;
-
+        danoAtaqueMelle = 2;
 
     }
 
@@ -45,7 +45,6 @@ public class Caminhante : OponenteCore
         {
             perseguir.PerseguirAlvo();
             atacar.VerificarPossibilidadeAtaque();
-
         }
 
     }

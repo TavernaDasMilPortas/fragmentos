@@ -14,7 +14,7 @@ public class Hurtbox : MonoBehaviour
             if (hitbox != null)
             {
                 Debug.Log("A hitbox não está vazia!");
-                vida.ReceberDano(hitbox.dano);
+                this.vida.ReceberDano(hitbox.dano);
             }
         }
     }

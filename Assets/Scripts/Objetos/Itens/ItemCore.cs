@@ -10,5 +10,6 @@ public class ItemCore : ScriptableObject, Iinteragivel
     public Sprite sprite;
     public slotTag slotTag;
     public string Descricao;
+    public int quantidade = 1;
     public void Interagir() { }
 }

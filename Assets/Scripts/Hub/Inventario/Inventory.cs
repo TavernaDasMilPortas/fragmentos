@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public InventoryItem itemPrefab;
     [SerializeField] public ItemCore[] itens;
     [SerializeField] PLayer player;
+
     void Awake()
     {
         inventory = this;
@@ -18,11 +19,9 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (carriedItem == null)
-        {
-            return;
-        }
-        carriedItem.transform.position = Input.mousePosition; 
+        if (carriedItem == null) return;
+
+        carriedItem.transform.position = Input.mousePosition;
     }
 
     public void SetCarriedItem(InventoryItem item)
@@ -37,4 +36,61 @@ public class Inventory : MonoBehaviour
         item.transform.SetParent(draggablesTransform);
     }
 
+    public InventorySlot EncontrarPrimeiroSlotVazio()
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.item == null)
+            {
+                Debug.Log($"Slot vazio encontrado: {slot.name}");
+                return slot;
+            }
+        }
+
+        Debug.LogWarning("Nenhum slot vazio encontrado!");
+        return null;
+    }
+
+    public InventorySlot EncontrarSlotComItem(ItemCore itemCore)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.item != null && slot.item.item == itemCore)
+            {
+                Debug.Log($"Item {itemCore.name} encontrado no slot {slot.name}.");
+                return slot;
+            }
+        }
+
+        return null;
+    }
+
+    public void AtualizarQuantidadeOuRemover(InventorySlot slot, int quantidade)
+    {
+        if (slot.item == null) return;
+
+        slot.item.quantidade += quantidade;
+
+        if (slot.item.quantidade <= 0)
+        {
+            Debug.Log($"Quantidade do item {slot.item.item.name} chegou a 0. Removendo do slot {slot.name}.");
+            slot.RemoverItem();
+        }
+        else
+        {
+            Debug.Log($"Quantidade do item {slot.item.item.name} atualizada para {slot.item.quantidade}.");
+        }
+    }
+
+    public InventorySlot EncontrarItemPorNome(ItemCore itemCore)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.item != null && slot.item.item == itemCore)
+            {
+                return slot;
+            }
+        }
+        return null;
+    }
 }

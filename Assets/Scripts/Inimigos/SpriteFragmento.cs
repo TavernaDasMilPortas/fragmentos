@@ -11,7 +11,6 @@ public class SpriteFragmento : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        sprites = sprites.OrderBy(sprite => Random.value).ToArray();
         spriteRenderer.sprite = sprites[indice];
     }
 

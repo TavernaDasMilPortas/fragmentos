@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6545cdf55c880c429c588797aa1ea0e, type: 3}
   m_Name: CacoEspelho
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -1532334058, guid: b6ca7017d3562f14c976542f188b7a41, type: 3}
   slotTag: 0
   Descricao: Um dos Cacos do Espelho Transportador Mestre
+  quantidade: 1

@@ -33,12 +33,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -189, y: 71}
-  m_SizeDelta: {x: -410.5463, y: -176.913}
+  m_AnchoredPosition: {x: -438.24738, y: 239.76306}
+  m_SizeDelta: {x: -1026.7605, y: -573.5851}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6325523519025311572
 CanvasRenderer:
@@ -68,8 +67,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -856060003, guid: b6ca7017d3562f14c976542f188b7a41, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -90,6 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1816abaf341a6448960b2eab24167b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: 7675123822725269975}
+  canvasGroup: {fileID: 486130511890214206}
 --- !u!225 &486130511890214206
 CanvasGroup:
   m_ObjectHideFlags: 0

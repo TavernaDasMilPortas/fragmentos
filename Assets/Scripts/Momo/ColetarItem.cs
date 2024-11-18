@@ -4,38 +4,35 @@ using UnityEngine;
 
 public class ColetarItem : MonoBehaviour
 {
-    [SerializeField] private Inventory inventario; // Referência ao sistema de inventário
-    [SerializeField] private Interagir interagir;  // Script de interação do jogador
-    private void Coletar(ItemCore itemCore)
+    [SerializeField] private Inventory inventario;
+
+    public void Coletar(ItemCore itemCore)
     {
-        InventorySlot slotVazio = EncontrarPrimeiroSlotVazio();
+        var slotComItemIgual = inventario.EncontrarSlotComItem(itemCore);
+        if (slotComItemIgual != null)
+        {
+            inventario.AtualizarQuantidadeOuRemover(slotComItemIgual, 1);
+            return;
+        }
+
+        var slotVazio = inventario.EncontrarPrimeiroSlotVazio();
         if (slotVazio != null)
         {
-            // Instancia um novo item para o inventário
             var novoItem = Instantiate(inventario.itemPrefab, inventario.draggablesTransform);
-            novoItem.Initialize(itemCore, slotVazio);
-
-            // Aloca o item no slot vazio
-            slotVazio.SetItem(novoItem);
-
-            // Remove o objeto coletado do mundo
-            Destroy(itemCore);
+            if (novoItem != null)
+            {
+                novoItem.Initialize(itemCore, slotVazio, 1);
+                slotVazio.SetItem(novoItem);
+                Debug.Log($"Novo item {itemCore.name} adicionado ao slot {slotVazio.name}.");
+            }
+            else
+            {
+                Debug.LogError("Erro ao instanciar novo item.");
+            }
         }
         else
         {
-            Debug.Log("Inventário cheio!");
+            Debug.LogWarning("Nenhum slot vazio encontrado.");
         }
-    }
-
-    private InventorySlot EncontrarPrimeiroSlotVazio()
-    {
-        foreach (var slot in inventario.slots)
-        {
-            if (slot.item == null)
-            {
-                return slot;
-            }
-        }
-        return null; // Nenhum slot vazio encontrado
     }
 }

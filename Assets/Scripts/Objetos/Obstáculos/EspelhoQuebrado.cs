@@ -6,14 +6,22 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
     [SerializeField] private ItemCore itemCore; // Referência ao ItemCore a ser verificado no inventário
     [SerializeField] private Inventory inventario; // Referência ao inventário
     [SerializeField] private Transform spawnLocation; // Local de spawn do prefab
-    [SerializeField] private GameObject prefabParaSpawn; // Prefab a ser instanciado
     [SerializeField] private Camera mainCamera; // Referência à câmera principal
     [SerializeField] private Transform player; // Transform do jogador para voltar a câmera
     [SerializeField] private float cameraTransitionDuration = 2f; // Duração da transição da câmera
     [SerializeField] private EspelhoSprite sprite;
     [SerializeField] private MonoBehaviour camera;
+    [SerializeField] private GameObject boss;
+    [SerializeField] private ScriptUtility desligar;
     public int fragmentosNoEspelho = 0;
     private const int maxFragmentos = 6;
+
+    void Start()
+    {
+        desligar.SetScriptsActive(boss, false);
+        boss.SetActive(false);
+    }
+
 
     public void Interagir()
     {
@@ -53,6 +61,8 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
         
         // Transição da câmera para o local de spawn
         camera.enabled = false;
+       
+
         Vector3 initialPosition = mainCamera.transform.position;
         Vector3 targetPosition = new Vector3(spawnLocation.position.x, spawnLocation.position.y, mainCamera.transform.position.z);
 
@@ -63,11 +73,12 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
+        boss.SetActive(true);
+        desligar.SetScriptsActive(boss, true);
         mainCamera.transform.position = targetPosition;
 
         // Spawna o prefab
-        Instantiate(prefabParaSpawn, spawnLocation.position, Quaternion.identity);
+       
 
         // Espera um pouco antes de retornar ao jogador
         yield return new WaitForSeconds(2f);

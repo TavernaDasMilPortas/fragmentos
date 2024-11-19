@@ -27,8 +27,7 @@ public class Caminhante : OponenteCore
     // Update is called once per frame
     void Update()
     {
-        
-       
+  
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();

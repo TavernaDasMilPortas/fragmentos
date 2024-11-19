@@ -6,21 +6,33 @@ public class Porta : MonoBehaviour, Iinteragivel
     [SerializeField] private SpriteRenderer spriteRenderer; // Para alternar entre sprites de porta aberta/fechada
     [SerializeField] private Sprite spriteFechada; // Sprite quando a porta está fechada
     [SerializeField] private Sprite spriteAberta; // Sprite quando a porta está aberta
+    [SerializeField] private ItemCore itemData;
+    [SerializeField] private Inventory inventario;
     private bool estaAberta = false; // Indica o estado atual da porta
-
-    private void Start()
-    {
-        AtualizarEstado(); // Define o estado inicial da porta
-    }
 
     public void Interagir()
     {
-        estaAberta = !estaAberta; // Alterna o estado da porta
-        AtualizarEstado(); // Atualiza visualmente e funcionalmente
+        if (itemData == null)
+        {
+            AtualizarEstado();
+        }
+        else
+        {
+            InventorySlot chave = inventario.EncontrarItemPorNome(itemData);
+            if (chave == null)
+            {
+                Debug.Log("A chave ainda não foi coletada");
+            }
+            else
+            {
+                AtualizarEstado();
+            }
+        }
     }
 
     private void AtualizarEstado()
     {
+        estaAberta = !estaAberta;
         if (estaAberta)
         {
             colisor.isTrigger = true; // Desativa o colisor, permitindo passagem

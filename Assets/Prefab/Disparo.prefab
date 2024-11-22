@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4681424167455023950}
   m_Layer: 0
   m_Name: Disparo
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dano: {fileID: 1695028873283811074}
   tipo: 
+  colisorIgnorado: {fileID: 0}
 --- !u!114 &1695028873283811074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,4 +214,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 2454673543877849763}
-  dano: 5
+  dano: {fileID: 1695028873283811074}

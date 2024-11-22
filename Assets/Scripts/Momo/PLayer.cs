@@ -11,21 +11,28 @@ public class PLayer : PlayerCore
     [SerializeField] Andar andar;
     [SerializeField] DisparoProjetil disparar;
     [SerializeField] Interagir interagir;
+    [SerializeField] ControleRelogio relogio;
     public bool vInteragir = true;
     void Start()
     {
-        this.Vida.vidaMax = 10;
+        this.Vida.vidaMax = 36;
         this.Vida.vidaAtual = this.Vida.vidaMax;
+        this.Vida.vidaAnterior = this.Vida.vidaMax;
         this.VelocidadeMovimento = 3f;
         this.DanoDisparo = 2;
         Andando = false;
         swManaCost = shockwavePrefab.manaCost;
         this.FragmentoAtual.IniciarFragmento();
+        relogio.IniciarRelogios();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
+        {
+            relogio.ModificarRelogio();
+        }
         andar.Deslocar();
         if (vInteragir)
         {

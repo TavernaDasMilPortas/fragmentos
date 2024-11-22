@@ -6,13 +6,13 @@ public class Perseguir : MonoBehaviour
 {
     [SerializeField] public OponenteCore oponente;
     [SerializeField] private Parar parar;
-
+    [SerializeField] private Agro agro;
     public Vector2 direcaoAtual { get; private set; } // Direção exposta para o HitboxSpawnPoint
 
     public void PerseguirAlvo()
     {
         if (oponente.Alvo == null) return; // Verifica se há um alvo definido
-
+        agro.AtivarAgro();
         // Define o destino do agente como a posição do alvo
         oponente.agent.SetDestination(oponente.Alvo.position);
 

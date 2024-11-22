@@ -11,6 +11,8 @@ TagManager:
   - Hitbox
   - Hurtbox
   - Porta
+  - HurtboxOponente
+  - HurtboxPlayer
   layers:
   - Default
   - TransparentFX
@@ -65,4 +67,7 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 1473067895
+    locked: 0
+  - name: HUD
+    uniqueID: 983965957
     locked: 0

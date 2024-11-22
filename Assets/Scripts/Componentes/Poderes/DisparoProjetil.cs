@@ -11,6 +11,8 @@ public class DisparoProjetil : MonoBehaviour
     [SerializeField] public GameObject Atirador;
     private GameObject projetil;
     [SerializeField] PlayerCore player;
+    [SerializeField] Collider2D playerHurtbox;
+    [SerializeField] ValorDano dano;
     public string tipo;
 
     private void Start()
@@ -21,8 +23,8 @@ public class DisparoProjetil : MonoBehaviour
     public void Disparar(int dano, string tipo)
     {
         projetil = Instantiate(prefabProjetil, pontoDeDisparo.position, pontoDeDisparo.rotation);
-        Projetil proj = projetil.GetComponent<Projetil>();
-        proj.Inicializar(dano, tipo);
+        Projetil scriptProjetil = projetil.GetComponent<Projetil>();
+        scriptProjetil.Inicializar( this.dano.valorDano, "Temporal", playerHurtbox, player.transform);
         Physics2D.IgnoreCollision(projetil.GetComponent<Collider2D>(), Atirador.GetComponent<Collider2D>());
         Rigidbody2D rb = projetil.GetComponent<Rigidbody2D>();
         rb.velocity = (pontoDeDisparo.position - Atirador.transform.position).normalized * velocidadeProjetil;

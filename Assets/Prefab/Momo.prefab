@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4596423504107547019}
   - component: {fileID: 8489209566097326848}
-  - component: {fileID: 6535684534765447199}
+  - component: {fileID: 1895779450814758604}
   m_Layer: 3
-  m_Name: HurtBox
+  m_Name: MomoHurtBox
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,10 +96,10 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022519112, y: 0.033778787}
-  m_Size: {x: 1.130537, y: 2.1935174}
+  m_Offset: {x: -0.022519112, y: -0.0012278557}
+  m_Size: {x: 1.130537, y: 2.2635307}
   m_Direction: 0
---- !u!114 &6535684534765447199
+--- !u!114 &1895779450814758604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8616717540984958652}
   - component: {fileID: 7576246813667409804}
   - component: {fileID: 5279869367535806061}
+  - component: {fileID: 4727726515906217773}
   m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
@@ -232,7 +233,22 @@ MonoBehaviour:
   tempoDeDestruicao: 1.5
   Atirador: {fileID: 6888085195443465096}
   player: {fileID: 769849489488743456}
+  playerHurtbox: {fileID: 8489209566097326848}
+  dano: {fileID: 4727726515906217773}
   tipo: 
+--- !u!114 &4727726515906217773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203239716479043677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f2fc985c10cb24899c7f6f115856a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valorDano: 2
 --- !u!1 &6888085195443465096
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,15 +266,13 @@ GameObject:
   - component: {fileID: 6528556467783412425}
   - component: {fileID: 8386453775999219430}
   - component: {fileID: 2956247159040691627}
-  - component: {fileID: 4015368817366726973}
   - component: {fileID: 6760428077040061952}
   - component: {fileID: 2388468869583570466}
   - component: {fileID: 210820427574845255}
   - component: {fileID: 6163233656740385374}
-  - component: {fileID: 140976617180202975}
-  - component: {fileID: 2573990444245283032}
   - component: {fileID: 6055720835475283464}
   - component: {fileID: 6987482602086603811}
+  - component: {fileID: 1384790480144906071}
   m_Layer: 3
   m_Name: Momo
   m_TagString: Player
@@ -389,8 +403,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.017642953, y: -0.70825166}
-  m_Size: {x: 0.7951565, y: 0.6554087}
+  m_Offset: {x: -0.008612643, y: -0.8242111}
+  m_Size: {x: 0.7426472, y: 0.42348987}
   m_Direction: 1
 --- !u!50 &211650273317238561
 Rigidbody2D:
@@ -446,6 +460,7 @@ MonoBehaviour:
   andar: {fileID: 2388468869583570466}
   disparar: {fileID: 5279869367535806061}
   interagir: {fileID: 6055720835475283464}
+  relogio: {fileID: 1384790480144906071}
   vInteragir: 1
 --- !u!114 &6528556467783412425
 MonoBehaviour:
@@ -495,20 +510,6 @@ MonoBehaviour:
   forceFieldObject: {fileID: 8209190479223419694}
   intervaloMana: 0.5
   manaCost: 0
---- !u!114 &4015368817366726973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6888085195443465096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 357838dd6a700b14e9ae1920278e6657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidaMax: 10
-  vidaAtual: 0
 --- !u!114 &6760428077040061952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfeed82bfe92a9409190970db211cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMax: 0
+  vidaMax: 12
   vidaAtual: 0
   vidaAnterior: 0
 --- !u!114 &6163233656740385374
@@ -570,32 +571,6 @@ MonoBehaviour:
   teleportar: {fileID: 8386453775999219430}
   campoForca: {fileID: 2956247159040691627}
   player: {fileID: 769849489488743456}
---- !u!114 &140976617180202975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6888085195443465096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15c13e70ca51f148b4ba0f610e9f75c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vida: {fileID: 210820427574845255}
---- !u!114 &2573990444245283032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6888085195443465096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15c13e70ca51f148b4ba0f610e9f75c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vida: {fileID: 0}
 --- !u!114 &6055720835475283464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +600,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventario: {fileID: 0}
+--- !u!114 &1384790480144906071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6888085195443465096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cdb5b0c396633458ac3a57139e8b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1699738992, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: -1259220491, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: 1597920387, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: 1719726988, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: -1512235565, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: -207663721, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: -1089744654, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: -594222636, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: 1307941190, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: 968324105, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: -101265256, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  - {fileID: 192200572, guid: cc54f60820565e64081ac754ab2a0578, type: 3}
+  Vida: {fileID: 210820427574845255}
+  relogioPrefab: {fileID: 5291117637677742865, guid: b4ee3fa4dc4730b47a6f6a4d242de77f,
+    type: 3}
+  pontoInicial: {fileID: 0}
+  vidaRelogioFrente: 0
+  relogios: []
+  textoVida: {fileID: 0}
 --- !u!1 &8209190479223419694
 GameObject:
   m_ObjectHideFlags: 0

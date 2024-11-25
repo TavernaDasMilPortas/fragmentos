@@ -6,7 +6,8 @@ public class Esfera : MonoBehaviour
 {
     public Transform personagem;  
     public float distancia = 1.4f;
-    private SpriteRenderer spriteRenderer; 
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] Animator animator;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -19,15 +20,24 @@ public class Esfera : MonoBehaviour
         transform.position = novaPosicao;
         if (posicaoMouse.y > personagem.position.y)
         {
-            // Mouse está acima do jogador, esfera vai para "trás"
-            spriteRenderer.sortingOrder = -1;  // Define um valor menor para ficar atrás do jogador
+
+            if (animator != null)
+            {
+              animator.SetBool("Costas", true);
+            }
+            spriteRenderer.sortingOrder = -1;
+
         }
         else
         {
-            // Mouse está abaixo do jogador, esfera vai para "frente"
-            spriteRenderer.sortingOrder = 1;  // Define um valor maior para ficar na frente do jogador
+            if (animator != null)
+            {
+                animator.SetBool("Costas", false);
+            }
+            spriteRenderer.sortingOrder = 1;  
+
         }
-        float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angulo);
+
+
     }
 }

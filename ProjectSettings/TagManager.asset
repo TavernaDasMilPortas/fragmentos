@@ -20,12 +20,12 @@ TagManager:
   - Personagem
   - Water
   - UI
-  - obstaculos
   - paredes
   - paredes sem colisor
+  - obstaculos
   - fundo
   - Itens
-  - 
+  - Oponente
   - 
   - 
   - 
@@ -59,14 +59,32 @@ TagManager:
   - name: ForceField
     uniqueID: 2801964041
     locked: 0
-  - name: Player
-    uniqueID: 3345834859
+  - name: "Paredes tr\xE1s"
+    uniqueID: 3303198997
     locked: 0
-  - name: obstaculos
-    uniqueID: 2331264093
+  - name: "Obstaculos tr\xE1s"
+    uniqueID: 4196922119
+    locked: 0
+  - name: "Oponentes tr\xE1s"
+    uniqueID: 2458230943
     locked: 0
   - name: Item
     uniqueID: 1473067895
+    locked: 0
+  - name: Sombra
+    uniqueID: 3584815457
+    locked: 0
+  - name: Player
+    uniqueID: 3345834859
+    locked: 0
+  - name: Oponentes frente
+    uniqueID: 1184905113
+    locked: 0
+  - name: Obstaculos frente
+    uniqueID: 2331264093
+    locked: 0
+  - name: Paredes frente
+    uniqueID: 576033205
     locked: 0
   - name: HUD
     uniqueID: 983965957

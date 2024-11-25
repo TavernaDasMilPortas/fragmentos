@@ -7,19 +7,18 @@ public class FragmentoMomo : Fragmento
     public Teleporte teleportar;
     public ForceField campoForca;
     public PlayerCore player;
-    private bool VH1 = false;
-    private bool VH2 = false;
-    private bool VH3 = false;
-    private bool VA = false;
+
     public override void IniciarFragmento()
     {
         Nome = "Momo";
         Habilidade2 = teleportar;
-        VH2 = true;
         Habilidade3 = campoForca;
-        disparo.tipo = "Temporal";
-        VA = true;
-    }
+        disparo.tipo = DisparoProjetil.TipoProjetil.Temporal;
+        VH1 = false;
+        VH2 = false;
+        VH3 = false;
+        VA = false;
+}
     public override void AtivarHabilidade1()
     {
         if (VH1)

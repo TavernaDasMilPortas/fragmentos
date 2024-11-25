@@ -13,6 +13,7 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
     [SerializeField] private MonoBehaviour camera;
     [SerializeField] private GameObject boss;
     [SerializeField] private ScriptUtility desligar;
+    [SerializeField] private EventoQuandoJogadorAbaixo ligarlutaBoss;
     public int fragmentosNoEspelho = 0;
     private const int maxFragmentos = 6;
 
@@ -94,5 +95,7 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
 
         mainCamera.transform.position = new Vector3(player.position.x, player.position.y, mainCamera.transform.position.z);
         camera.enabled = true;
+        ligarlutaBoss.enabled = true;
+
     }
 }

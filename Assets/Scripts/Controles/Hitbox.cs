@@ -5,75 +5,57 @@ public class Hitbox : MonoBehaviour
 {
     public GameObject owner; // O dono da hitbox (inimigo ou jogador)
     public ValorDano dano; // Dano que a hitbox aplica
-    public HashSet<GameObject> alvosAtingidos = new HashSet<GameObject>(); // Alvos que já receberam dano nesta ativação
+    [SerializeField] public HashSet<GameObject> alvosAtingidos = new HashSet<GameObject>(); // Alvos que já receberam dano nesta ativação
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Exibe o nome do objeto colidido
-        Debug.Log("Objeto colidido: " + other.gameObject.name);
-
-        // Verifica se o objeto colidido tem a tag "Hurtbox"
+        // Verifica se colidiu com uma Hurtbox
         if (other.CompareTag("Hurtbox"))
         {
-            // Obtém o objeto raiz do outro (colidido) para comparar a tag com "Player" ou "Oponente"
-            GameObject raiz = other.gameObject.transform.root.gameObject;
-
-            // Verifica se o dono (owner) da hitbox é o player ou inimigo
-            bool isPlayer = owner.transform.root.CompareTag("Player");
-            bool isEnemy = owner.transform.root.CompareTag("Oponente");
-
-            // Se for o player, só detecta a hurtbox dos inimigos
-            if (isPlayer && raiz.CompareTag("Oponente"))
+            var hurtbox = other.GetComponent<Hurtbox>();
+            if (hurtbox == null)
             {
-                // Verifica se o owner não é o mesmo objeto que a hurtbox
-                if (owner != null && owner != other.gameObject)
-                {
-                    Debug.Log("Owner (Player) não é igual ao objeto colidido.");
-                    if (!alvosAtingidos.Contains(other.gameObject))
-                    {
-                        // Busca a Hurtbox dentro da hierarquia de "other"
-                        var hurtbox = other.GetComponentInChildren<Hurtbox>();
-                        if (hurtbox != null)
-                        {
-                            Debug.Log("Hurtbox do inimigo encontrada, aplicando "+ dano.valorDano + " dano.");
-                            hurtbox.vida.ReceberDano(dano.valorDano);
-                            alvosAtingidos.Add(other.gameObject);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Hurtbox não encontrada no objeto colidido.");
-                        }
-                    }
-                }
+                Debug.Log("[Hitbox] A colisão ocorreu, mas a Hurtbox está ausente.");
+                return;
             }
-            // Se for um inimigo, só detecta a hurtbox do player
-            else if (isEnemy && raiz.CompareTag("Player"))
+
+            // Verifique se o dono da Hitbox e da Hurtbox pertencem a grupos diferentes (com base em root)
+            bool ownerIsPlayer = owner.transform.root.CompareTag("Player");
+            bool otherIsPlayer = hurtbox.owner.transform.root.CompareTag("Player");
+
+            bool ownerIsOpponent = owner.transform.root.CompareTag("Oponente");
+            bool otherIsOpponent = hurtbox.owner.transform.root.CompareTag("Oponente");
+
+            // Verifica se são de grupos diferentes
+            if ((ownerIsPlayer && otherIsPlayer) || (ownerIsOpponent && otherIsOpponent))
             {
-                // Verifica se o owner não é o mesmo objeto que a hurtbox
-                if (owner != null && owner != other.gameObject)
-                {
-                    Debug.Log("Owner (Inimigo) não é igual ao objeto colidido.");
-                    if (!alvosAtingidos.Contains(other.gameObject))
-                    {
-                        // Busca a Hurtbox dentro da hierarquia de "other"
-                        var hurtbox = other.GetComponentInChildren<Hurtbox>();
-                        if (hurtbox != null)
-                        {
-                            Debug.Log("Hurtbox do player encontrada, aplicando " + dano.valorDano + " dano.");
-                            hurtbox.vida.ReceberDano(dano.valorDano);
-                            alvosAtingidos.Add(other.gameObject);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Hurtbox não encontrada no objeto colidido.");
-                        }
-                    }
-                }
+                Debug.Log("[Hitbox] O dono da Hitbox e da Hurtbox são do mesmo grupo. Ignorando dano.");
+                return;
+            }
+
+            // Se não for do mesmo grupo, verifica se o alvo já foi atingido
+            if (!alvosAtingidos.Contains(other.gameObject))
+            {
+                alvosAtingidos.Add(other.gameObject); // Marca o alvo como atingido
+                Debug.Log($"[Hitbox] Aplicando {dano.valorDano} de dano ao alvo: {hurtbox.owner.name}");
+
+                // Aplica o dano
+                hurtbox.vida.ReceberDano(dano.valorDano);
+            }
+            else
+            {
+                Debug.Log("[Hitbox] Alvo já foi atingido anteriormente.");
             }
         }
         else
         {
-            Debug.LogWarning("O objeto colidido não tem a tag 'Hurtbox'.");
+            Debug.Log("[Hitbox] Colisão com um objeto que não é uma Hurtbox.");
         }
+    }
+
+    public void FinalizarAtaque()
+    {
+        alvosAtingidos.Clear();  // Limpa a lista de alvos após o ataque
+        Debug.Log("[Hitbox] Lista de alvos atingidos limpa.");
     }
 }

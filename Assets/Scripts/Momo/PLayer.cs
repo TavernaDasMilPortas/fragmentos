@@ -12,10 +12,11 @@ public class PLayer : PlayerCore
     [SerializeField] DisparoProjetil disparar;
     [SerializeField] Interagir interagir;
     [SerializeField] ControleRelogio relogio;
+    [SerializeField] AudioSource blink;
     public bool vInteragir = true;
     void Start()
     {
-        this.Vida.vidaMax = 36;
+        this.Vida.vidaMax = 12;
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.Vida.vidaAnterior = this.Vida.vidaMax;
         this.VelocidadeMovimento = 3f;
@@ -54,10 +55,12 @@ public class PLayer : PlayerCore
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
+                blink.Play();
                 FragmentoAtual.AtivarHabilidade2();
             }
             else if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+
                 FragmentoAtual.Disparar();
             }
             else if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -79,11 +82,7 @@ public class PLayer : PlayerCore
 
     void SpawnShockwave()
     {
-        if (Mana.manaAtual - swManaCost >= 0)
-        {
-            Shockwave shockWave = Instantiate(shockwavePrefab, this.transform.position, Quaternion.identity);
-            Mana.GastarMana(shockWave.manaCost);
-        }
+
         // Instantiate the shockwave at the player's position (or a specific point)
     }
 }

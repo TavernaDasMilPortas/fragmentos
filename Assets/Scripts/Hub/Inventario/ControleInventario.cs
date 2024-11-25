@@ -5,10 +5,7 @@ public class ControleInventario : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private PauseManager pauseManager;
     [SerializeField] public GameObject[] excessoes;
-    void Start()
-    {
-        canvas.SetActive(false);
-    }
+ 
 
     void Update()
     {

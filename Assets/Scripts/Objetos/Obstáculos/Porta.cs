@@ -8,13 +8,21 @@ public class Porta : MonoBehaviour, Iinteragivel
     [SerializeField] private Sprite spriteAberta; // Sprite quando a porta está aberta
     [SerializeField] private ItemCore itemData;
     [SerializeField] private Inventory inventario;
+    [SerializeField] private VerificarVidaOponentes verificar;
+    [SerializeField] private AudioSource portaNormal;
+    [SerializeField] private AudioSource portaTrancada;
     private bool estaAberta = false; // Indica o estado atual da porta
 
     public void Interagir()
     {
         if (itemData == null)
         {
-            AtualizarEstado();
+            if (verificar.todosMortos)
+            {
+                AtualizarEstado();
+                portaNormal.Play();
+            }
+ 
         }
         else
         {
@@ -22,6 +30,7 @@ public class Porta : MonoBehaviour, Iinteragivel
             if (chave == null)
             {
                 Debug.Log("A chave ainda não foi coletada");
+                portaTrancada.Play();
             }
             else
             {

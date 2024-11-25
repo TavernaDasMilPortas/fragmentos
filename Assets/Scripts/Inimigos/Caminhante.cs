@@ -13,7 +13,7 @@ public class Caminhante : OponenteCore
     // Start is called before the first frame update
     void Start()
     {
-        this.Vida.vidaMax = 10;
+        this.Vida.vidaMax = 5;
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.Vida.vidaAnterior = this.Vida.vidaMax;
         this.Velocidade = 2.1f;

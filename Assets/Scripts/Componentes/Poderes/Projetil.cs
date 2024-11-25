@@ -9,6 +9,7 @@ public class Projetil : MonoBehaviour
     private Collider2D meuColisor; // Colisor deste projétil
     [SerializeField] private Collider2D colisorIgnorado; // Colisor a ser ignorado pelo projétil
     [SerializeField] private Transform objetoPai; // Objeto que o projétil se tornará filho após a colisão
+    [SerializeField] private LayerMask obstaculosMask; // Máscara para identificar obstáculos a serem ignorados
 
     void Start()
     {
@@ -42,6 +43,13 @@ public class Projetil : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject raiz = collision.gameObject.transform.root.gameObject;
+
+        // Ignora colisões com obstáculos baseados na Layer Mask
+        if (((1 << collision.gameObject.layer) & obstaculosMask) != 0)
+        {
+            Debug.Log("Colisão ignorada com obstáculo: " + collision.gameObject.name);
+            return; // Sai do método se for um obstáculo
+        }
 
         // Se o projétil tiver um objeto pai configurado, faz com que o projétil se torne filho deste objeto
         if (objetoPai != null)

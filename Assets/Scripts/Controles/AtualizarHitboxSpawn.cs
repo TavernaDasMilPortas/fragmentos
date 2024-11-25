@@ -29,10 +29,13 @@ public class AtualizarHitboxSpawn : MonoBehaviour
 
             // Atualiza a rotação do ponto de ataque
             pontoAtaque.rotation = Quaternion.Euler(0f, 0f, angulo);
-
+            if (hitbox !=null)
+            {
+                hitbox.transform.position = pontoAtaque.position;
+                hitbox.transform.rotation = pontoAtaque.rotation;
+            }
             // Atualiza a posição e rotação da hitbox com base no ponto de ataque
-            hitbox.transform.position = pontoAtaque.position;
-            hitbox.transform.rotation = pontoAtaque.rotation;
+
         }
     }
 }

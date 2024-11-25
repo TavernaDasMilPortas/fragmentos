@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColetarItem : MonoBehaviour
 {
     [SerializeField] private Inventory inventario;
-
+    [SerializeField] AudioSource coletar;
     public void Coletar(ItemCore itemCore)
     {
         var slotComItemIgual = inventario.EncontrarSlotComItem(itemCore);
@@ -21,6 +21,7 @@ public class ColetarItem : MonoBehaviour
             var novoItem = Instantiate(inventario.itemPrefab, inventario.draggablesTransform);
             if (novoItem != null)
             {
+                coletar.Play();
                 novoItem.Initialize(itemCore, slotVazio, 1);
                 slotVazio.SetItem(novoItem);
                 Debug.Log($"Novo item {itemCore.name} adicionado ao slot {slotVazio.name}.");

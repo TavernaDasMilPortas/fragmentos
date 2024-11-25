@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8221394354805858985}
   - component: {fileID: 4448299700946897359}
   - component: {fileID: 4167534876298456282}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CaminhanteHurtbox
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15c13e70ca51f148b4ba0f610e9f75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 6040402864419200334}
   vida: {fileID: 3712887462066320599}
 --- !u!1 &6040402864419200334
 GameObject:
@@ -105,7 +106,10 @@ GameObject:
   - component: {fileID: 543111984049003123}
   - component: {fileID: 5404590589592140350}
   - component: {fileID: 2500545834233006836}
-  m_Layer: 0
+  - component: {fileID: 5526182991351569371}
+  - component: {fileID: 8766036359267853585}
+  - component: {fileID: 3797215176559040253}
+  m_Layer: 11
   m_Name: Caminhante
   m_TagString: Oponente
   m_Icon: {fileID: 0}
@@ -168,8 +172,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -949132437
-  m_SortingLayer: 4
+  m_SortingLayerID: 1184905113
+  m_SortingLayer: 10
   m_SortingOrder: 12
   m_Sprite: {fileID: 828731706, guid: 1dd5b3ea346b32745b0351e8fef05a45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -196,11 +200,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 0
   vida: {fileID: 3712887462066320599}
-  rigidbody: {fileID: 0}
+  rigidbody: {fileID: 5526182991351569371}
   raioVisao: 0
   layermask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 200
   alvo: {fileID: 0}
   agent: {fileID: 428299836773738509}
   agro: {fileID: 7465213357762011585}
@@ -256,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oponente: {fileID: 2474435221210221891}
   parar: {fileID: 595607176923516250}
+  agro: {fileID: 7465213357762011585}
 --- !u!114 &7439528670229854328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oponente: {fileID: 2474435221210221891}
+  agro: {fileID: 7465213357762011585}
 --- !u!114 &3712887462066320599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,9 +337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213a2c4859ceb1945827bba8513ba281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxSpawnPoint: {fileID: 3382567177232370126}
-  perseguidor: {fileID: 332775494746460471}
+  walker: {fileID: 5322535318942727477}
   hitbox: {fileID: 8782721699285418753}
+  distancia: 0.6
+  pontoAtaque: {fileID: 3382567177232370126}
+  alvo: {fileID: 2474435221210221891}
 --- !u!95 &6316780483186044974
 Animator:
   serializedVersion: 5
@@ -439,7 +447,77 @@ MonoBehaviour:
   canAttack: 1
   oponente: {fileID: 2474435221210221891}
   hitbox: {fileID: 5404590589592140350}
-  animador: {fileID: 2794117301522888936}
+  animadorGarras: {fileID: 2794117301522888936}
+  animadorWalker: {fileID: 6316780483186044974}
+--- !u!50 &5526182991351569371
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040402864419200334}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &8766036359267853585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040402864419200334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48249fd50e106440b9b8eb0f889d138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerAcima: "Oponentes tr\xE1s"
+  sortingLayerAbaixo: Oponentes frente
+  jogador: {fileID: 0}
+--- !u!114 &3797215176559040253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040402864419200334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fc49d096dc85845a63aa99315743bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualConfigs:
+  - animatorController: {fileID: 9100000, guid: 6b528944dc4e2cc4ead1ed1f3924ff53,
+      type: 2}
+    sprite: {fileID: 828731706, guid: 1dd5b3ea346b32745b0351e8fef05a45, type: 3}
+  - animatorController: {fileID: 9100000, guid: 2a21b9601cbcbbd4c956f8b7076f8f6b,
+      type: 2}
+    sprite: {fileID: -1761758304, guid: 76f4cec7e742f564e89b5c41c78fbee3, type: 3}
+  - animatorController: {fileID: 9100000, guid: c7836c7a3f3ad82459022768435cff2b,
+      type: 2}
+    sprite: {fileID: 1406897503, guid: b7f5d5ad743c66e47b0cb06a4cfbf07d, type: 3}
+  - animatorController: {fileID: 9100000, guid: ea9a7a51770641949b5ec5951d58c91c,
+      type: 2}
+    sprite: {fileID: 1902281901, guid: b18466d1115c83649b777e98f0b22882, type: 3}
+  spriteRenderer: {fileID: 7169900415032276067}
+  animator: {fileID: 6316780483186044974}
 --- !u!1 &7527029823408018788
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,11 +559,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5497567118213864753}
   - component: {fileID: 4683728241474350288}
-  - component: {fileID: 2310249720025637532}
   - component: {fileID: 2794117301522888936}
   - component: {fileID: 6841744958931803168}
   - component: {fileID: 4554915172806639375}
   - component: {fileID: 3531181041111490158}
+  - component: {fileID: 1854177648283013712}
   m_Layer: 0
   m_Name: Ataque hit box
   m_TagString: Hitbox
@@ -502,7 +580,7 @@ Transform:
   m_GameObject: {fileID: 8782721699285418753}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.9999991, w: -0.0013602076}
-  m_LocalPosition: {x: -0.15, y: 0.19, z: 0}
+  m_LocalPosition: {x: -0.136, y: 0.049, z: 0}
   m_LocalScale: {x: 1.1149, y: 0.5071053, z: 1.1149}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -550,7 +628,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 0.12547536, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -560,41 +638,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &2310249720025637532
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782721699285418753}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.16221115, y: -0.9272345}
-  m_Size: {x: 1.6766547, y: 0.97964805}
-  m_Direction: 1
 --- !u!95 &2794117301522888936
 Animator:
   serializedVersion: 5
@@ -628,7 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2fc985c10cb24899c7f6f115856a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valorDano: 5
+  valorDano: 1
 --- !u!114 &4554915172806639375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,3 +700,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alvo: {fileID: 6040402864419200334}
   nomeComponente: AtaqueMelle
+--- !u!60 &1854177648283013712
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782721699285418753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.16292726, y: -0.50121826}
+      - {x: -1, y: -0.5}
+      - {x: -0.6567238, y: -1.1230111}
+      - {x: -0.48610586, y: -1.3687716}
+      - {x: -0.13891605, y: -1.4098533}
+      - {x: 0.18631394, y: -1.3568624}
+      - {x: 0.66853166, y: -0.76941353}
+      - {x: 0.6846883, y: -0.72566664}
+      - {x: 0.4669005, y: -0.6546822}
+  m_UseDelaunayMesh: 0

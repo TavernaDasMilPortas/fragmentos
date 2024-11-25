@@ -9,26 +9,28 @@ public class ControleRelogio : MonoBehaviour
     [SerializeField] Sprite[] sprites; // Sprites para os relógios
     [SerializeField] GerenciarVida Vida; // Referência ao gerenciador de vida
     [SerializeField] GameObject relogioPrefab; // Prefab do relógio que possui o componente Image
-    [SerializeField] Transform pontoInicial; // Ponto inicial para os relógios
+    [SerializeField] RectTransform pontoInicial; // Ponto inicial para os relógios
     private Vector2 distanciaEntreIcones = new Vector2(25f, 0); // Distância entre os relógios
     private int RelogioFrente; // Índice do relógio da frente
     public int vidaRelogioFrente; // Vida do relógio da frente
     public List<GameObject> relogios = new List<GameObject>(); // Lista de relógios instanciados
-    [SerializeField] public TextMeshProUGUI textoVida; // Texto da UI que exibe a vida
+    [SerializeField] public TextMeshProUGUI textoVida; // Texto da UI que exibe a vida   
     private int qtdRelogios; // Quantidade total de relógios a ser instanciada
 
     public void IniciarRelogios()
     {
-        // Calcula a quantidade inicial de relógios
         qtdRelogios = CalcularQuantidadeRelogios(Vida.vidaAtual);
         RelogioFrente = qtdRelogios - 1;
 
-        Debug.Log($"Iniciando relógios. Quantidade: {qtdRelogios}");
-
         // Instancia os relógios
+        RectTransform pontoInicialRect = pontoInicial.GetComponent<RectTransform>();
+
         for (int i = 0; i < qtdRelogios; i++)
         {
-            Vector2 posicao = (Vector2)pontoInicial.position + (i * distanciaEntreIcones);
+            // Calcula a posição relativa
+            Vector2 posicao = pontoInicialRect.anchoredPosition + (i * distanciaEntreIcones);
+
+            // Instancia o relógio como filho do ponto inicial
             GameObject relogio = Instantiate(relogioPrefab, pontoInicial.parent);
             RectTransform rectTransform = relogio.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = posicao;
@@ -39,35 +41,52 @@ public class ControleRelogio : MonoBehaviour
 
         vidaRelogioFrente = CalcularVidaRelogioFrente(Vida.vidaAtual, qtdRelogios);
         AtualizarRelogios();
+        AtualizarPosicaoTextoVida();
     }
 
     public void ModificarRelogio()
     {
-        textoVida.text = Vida.vidaAtual.ToString(); // Atualiza o texto da vida do jogador
-        Debug.Log($"Vida atual: {Vida.vidaAtual}");
+        // Atualize o texto de vida
+        textoVida.text = Vida.vidaAtual.ToString();
 
+        // Verifique a quantidade de relógios necessária
         int novaQtdRelogios = CalcularQuantidadeRelogios(Vida.vidaAtual);
         if (novaQtdRelogios < qtdRelogios)
         {
             DesativarRelogios(qtdRelogios - novaQtdRelogios);
         }
 
+        // Atualize os índices e valores do relógio da frente
         RelogioFrente = novaQtdRelogios - 1;
         vidaRelogioFrente = CalcularVidaRelogioFrente(Vida.vidaAtual, novaQtdRelogios);
 
+        // Atualize a UI
         AtualizarRelogios();
+        AtualizarPosicaoTextoVida(); // Reposicione o texto da vida
+    }
+
+    private void AtualizarPosicaoTextoVida()
+    {
+        if (RelogioFrente >= 0 && RelogioFrente < relogios.Count)
+        {
+            RectTransform relogioFrenteRect = relogios[RelogioFrente].GetComponent<RectTransform>();
+            RectTransform textoVidaRect = textoVida.GetComponent<RectTransform>();
+
+            // Defina uma distância específica do texto em relação ao relógio
+            Vector2 distanciaTexto = new Vector2(100f, -20f);
+            textoVidaRect.anchoredPosition = pontoInicial.anchoredPosition + ((qtdRelogios + 1) * distanciaEntreIcones) + distanciaTexto;
+        }
     }
 
     private void AtualizarRelogios()
     {
-        Debug.Log($"Atualizando relógios: qtdRelogios={qtdRelogios}, RelogioFrente={RelogioFrente}, VidaRelogioFrente={vidaRelogioFrente}");
+        textoVida.text = Vida.vidaAtual.ToString();
 
         for (int i = 0; i < relogios.Count; i++)
         {
             GameObject relogio = relogios[i];
             if (i == RelogioFrente)
             {
-                Debug.Log($"Atualizando sprite do relógio {i}, Vida do relógio: {vidaRelogioFrente}");
                 relogio.GetComponent<Image>().sprite = sprites[vidaRelogioFrente - 1];
                 relogio.GetComponent<CanvasRenderer>().SetAlpha(1);
             }
@@ -89,7 +108,6 @@ public class ControleRelogio : MonoBehaviour
             if (relogios.Count > 0)
             {
                 int index = relogios.Count - 1;
-                Debug.Log($"Desativando relógio {index}");
                 relogios[index].GetComponent<CanvasRenderer>().SetAlpha(0);
                 relogios.RemoveAt(index);
             }

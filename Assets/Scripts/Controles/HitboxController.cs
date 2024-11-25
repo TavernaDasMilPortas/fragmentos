@@ -12,6 +12,8 @@ public class HitboxController : MonoBehaviour
 
     public void DesativarHitbox()
     {
-        hitboxObject.SetActive(false); // Desativa a hitbox
+        
+        hitboxObject.SetActive(false);
+        hitbox.FinalizarAtaque();// Desativa a hitbox
     }
 }

@@ -2,6 +2,28 @@ using UnityEngine;
 
 public class Porta : MonoBehaviour, Iinteragivel
 {
+
+    [SerializeField] private Sprite[] _spritesSelecionaveis; // Exposto no Inspector
+    [SerializeField] private int _indiceSprite = 0; // Exposto no Inspector
+    [SerializeField] private Sprite _spritePadrao; // Armazena o sprite original do objeto
+
+    public Sprite[] spritesSelecionaveis
+    {
+        get => _spritesSelecionaveis;
+        set => _spritesSelecionaveis = value;
+    }
+
+    public int indiceSprite
+    {
+        get => _indiceSprite;
+        set => _indiceSprite = value;
+    }
+
+    public Sprite SpritePadrao
+    {
+        get => _spritePadrao;
+        set => _spritePadrao = value;
+    }
     [SerializeField] private Collider2D colisor; // O colisor da porta (box ou qualquer outro tipo)
     [SerializeField] private SpriteRenderer spriteRenderer; // Para alternar entre sprites de porta aberta/fechada
     [SerializeField] private Sprite spriteFechada; // Sprite quando a porta está fechada

@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 291625986611348263}
   - component: {fileID: 493514240160445566}
-  - component: {fileID: 6068315170584328933}
   - component: {fileID: 4889579243986843051}
-  - component: {fileID: 6967949649441854081}
+  - component: {fileID: 4739601703046787780}
   m_Layer: 8
   m_Name: Cadeira_Costas
   m_TagString: Untagged
@@ -73,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -98045177
-  m_SortingLayer: 5
+  m_SortingLayerID: -1836736353
+  m_SortingLayer: 7
   m_SortingOrder: 2
   m_Sprite: {fileID: -1993403887, guid: 716b6f2e9e6cc754c83de9fc5ce42252, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,24 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6068315170584328933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5705019262482573172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e2d5916791a8da4fae3eb5f7d57e666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayerAcima: "Obstaculos tr\xE1s"
-  sortingLayerAbaixo: Obstaculos frente
-  distanciaMaxima: 2
-  spriteRenderer: {fileID: 493514240160445566}
-  jogador: {fileID: 0}
-  alvoMaisProximo: {fileID: 0}
 --- !u!61 &4889579243986843051
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.112222925}
+  m_Offset: {x: 0, y: -0.052189697}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -148,9 +129,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.203125, y: 0.15055415}
+  m_Size: {x: 0.203125, y: 0.2706206}
   m_EdgeRadius: 0
---- !u!114 &6967949649441854081
+--- !u!114 &4739601703046787780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,12 +140,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5705019262482573172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e2d5916791a8da4fae3eb5f7d57e666, type: 3}
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingLayerAcima: 
-  sortingLayerAbaixo: 
-  distanciaMaxima: 2
-  spriteRenderer: {fileID: 0}
-  jogador: {fileID: 0}
-  alvoMaisProximo: {fileID: 0}
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

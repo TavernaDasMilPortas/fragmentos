@@ -27,38 +27,53 @@ public class Interagir : MonoBehaviour
             }
         }
 
-        // Remove o destaque do objeto anterior
+        // Reverte o sprite do objeto anterior
         if (objetoMaisProximo != null && objetoMaisProximo != candidatoMaisProximo)
         {
-            AlterarOutline(objetoMaisProximo as MonoBehaviour, 0.0f); // Remove a borda
+            TrocarSprite(objetoMaisProximo, false); // Reverte para o sprite padrão
         }
 
-        // Adiciona destaque ao novo objeto mais próximo
+        // Atualiza o objeto mais próximo
         objetoMaisProximo = candidatoMaisProximo;
+
+        // Troca para o sprite selecionado do novo objeto
         if (objetoMaisProximo != null)
         {
-            // Ajuste o tamanho da borda com base na escala do objeto
-            float outlineSize = 2.0f ; // Ajuste o valor conforme necessário
-            AlterarOutline(objetoMaisProximo as MonoBehaviour, outlineSize); // Ativa a borda
+            TrocarSprite(objetoMaisProximo, true);
         }
     }
 
-    private void AlterarOutline(MonoBehaviour objeto, float outlineSize)
+    private void TrocarSprite(Iinteragivel interagivel, bool selecionar)
     {
-        if (objeto == null) return;
+        if (interagivel == null) return;
 
-        var spriteRenderer = objeto.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
+        var monoBehaviour = interagivel as MonoBehaviour;
+        if (monoBehaviour != null)
         {
-            // Garantir que o material não seja compartilhado
-            if (!spriteRenderer.material.name.EndsWith("(Instance)"))
+            var spriteRenderer = monoBehaviour.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
             {
-                // Instancia o material para garantir que ele seja único para o objeto
-                spriteRenderer.material = new Material(spriteRenderer.material);
-            }
+                // Salva o sprite padrão caso ainda não tenha sido salvo
+                if (interagivel.SpritePadrao == null)
+                {
+                    interagivel.SpritePadrao = spriteRenderer.sprite;
+                }
 
-            // Define os valores do shader com precisão
-            spriteRenderer.material.SetFloat("_OutlineSize", outlineSize);
+                if (selecionar)
+                {
+                    // Define o sprite para o índice selecionado
+                    int indice = interagivel.indiceSprite;
+                    if (indice >= 0 && indice < interagivel.spritesSelecionaveis.Length)
+                    {
+                        spriteRenderer.sprite = interagivel.spritesSelecionaveis[indice];
+                    }
+                }
+                else
+                {
+                    // Retorna ao sprite padrão
+                    spriteRenderer.sprite = interagivel.SpritePadrao;
+                }
+            }
         }
     }
 

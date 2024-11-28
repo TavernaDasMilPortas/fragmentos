@@ -59,6 +59,9 @@ TagManager:
   - name: ForceField
     uniqueID: 2801964041
     locked: 0
+  - name: Sombra
+    uniqueID: 3584815457
+    locked: 0
   - name: "Paredes tr\xE1s"
     uniqueID: 3303198997
     locked: 0
@@ -70,9 +73,6 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 1473067895
-    locked: 0
-  - name: Sombra
-    uniqueID: 3584815457
     locked: 0
   - name: Player
     uniqueID: 3345834859

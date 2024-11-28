@@ -6,14 +6,13 @@ public class HitboxController : MonoBehaviour
     [SerializeField] public GameObject hitboxObject;
     public void AtivarHitbox()
     {
-        hitbox.alvosAtingidos.Clear(); // Reseta a lista de alvos atingidos ao ativar a hitbox
+ // Reseta a lista de alvos atingidos ao ativar a hitbox
         hitboxObject.SetActive(true); // Ativa a hitbox
     }
 
     public void DesativarHitbox()
     {
-        
-        hitboxObject.SetActive(false);
-        hitbox.FinalizarAtaque();// Desativa a hitbox
+        hitboxObject.SetActive(false);// Desativa a hitbox
+        hitbox.FinalizarAtaque();
     }
 }

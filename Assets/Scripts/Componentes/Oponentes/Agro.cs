@@ -9,11 +9,12 @@ public class Agro : MonoBehaviour
 
     void Update()
     {
+        tempoRestanteFoco -= 0.1f * Time.deltaTime;
         // Se o agro está ativado, o inimigo continuará focado no jogador
         if (tempoRestanteFoco > 0)
         {
-            tempoRestanteFoco -= Time.deltaTime;
-            if (oponente.Alvo != null)
+           
+            if (oponente.Alvo == null)
             {
                 // O jogador está visível, o inimigo está focado nele
                 oponente.Alvo = GameObject.FindGameObjectWithTag("Player").transform;

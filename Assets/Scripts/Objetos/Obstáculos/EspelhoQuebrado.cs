@@ -3,6 +3,29 @@ using UnityEngine;
 
 public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
 {
+
+    [SerializeField] private Sprite[] _spritesSelecionaveis; // Exposto no Inspector
+    [SerializeField] private int _indiceSprite = 0; // Exposto no Inspector
+    [SerializeField] private Sprite _spritePadrao; // Armazena o sprite original do objeto
+
+    public Sprite[] spritesSelecionaveis
+    {
+        get => _spritesSelecionaveis;
+        set => _spritesSelecionaveis = value;
+    }
+
+    public int indiceSprite
+    {
+        get => _indiceSprite;
+        set => _indiceSprite = value;
+    }
+
+    public Sprite SpritePadrao
+    {
+        get => _spritePadrao;
+        set => _spritePadrao = value;
+    }
+
     [SerializeField] private ItemCore itemCore; // Referência ao ItemCore a ser verificado no inventário
     [SerializeField] private Inventory inventario; // Referência ao inventário
     [SerializeField] private Transform spawnLocation; // Local de spawn do prefab
@@ -14,6 +37,8 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
     [SerializeField] private GameObject boss;
     [SerializeField] private ScriptUtility desligar;
     [SerializeField] private EventoQuandoJogadorAbaixo ligarlutaBoss;
+
+
     public int fragmentosNoEspelho = 0;
     private const int maxFragmentos = 6;
 
@@ -45,12 +70,13 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
             inventario.AtualizarQuantidadeOuRemover(slotDoCaco, -1);
             fragmentosNoEspelho++;
             sprite.AtualizarSprite();
+            indiceSprite++;
         }
 
         Debug.Log($"Fragmentos no espelho: {fragmentosNoEspelho}/{maxFragmentos}");
 
         // Verifica se todos os fragmentos foram adicionados
-        if (fragmentosNoEspelho >= maxFragmentos)
+        if (fragmentosNoEspelho >= maxFragmentos - 1)
         {
             Debug.Log("Todos os fragmentos foram adicionados. Spawnando o prefab...");
             StartCoroutine(SpawnPrefabETransitarCamera());

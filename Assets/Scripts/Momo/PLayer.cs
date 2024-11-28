@@ -19,7 +19,7 @@ public class PLayer : PlayerCore
         this.Vida.vidaMax = 12;
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.Vida.vidaAnterior = this.Vida.vidaMax;
-        this.VelocidadeMovimento = 3f;
+        this.VelocidadeMovimento = 7f;
         this.DanoDisparo = 2;
         Andando = false;
         swManaCost = shockwavePrefab.manaCost;

@@ -10,12 +10,13 @@ public class EspelhoSprite : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     void Start()
     {
-        spriteRenderer.sprite = spriteInicial;
+        spriteRenderer.sprite = espelho.SpritePadrao;
     }
 
     // Update is called once per frame
     public void AtualizarSprite()
     {
         spriteRenderer.sprite = spritesConstrucao[espelho.fragmentosNoEspelho - 1];
+        espelho.SpritePadrao = spritesConstrucao[espelho.fragmentosNoEspelho - 1];
     }
 }

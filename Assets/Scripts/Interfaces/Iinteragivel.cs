@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface Iinteragivel
 {
-    // Start is called before the first frame update
-    public void Interagir() { }
+    public Sprite[] spritesSelecionaveis { get; set; }
+    public int indiceSprite { get; set; }
+    public Sprite SpritePadrao { get; set; } // Adicionada a propriedade para armazenar o sprite padrão
+    public void Interagir();
 }

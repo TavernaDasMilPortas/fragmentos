@@ -107,11 +107,13 @@ public class SubBossBlink : OponenteCore
             realizandoTeleporte = false;
         }
         animador.SetBool("CarregandoAtaque", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         animador.SetBool("CarregandoAtaque", false);
         tiroCarregado.RealizarTiroCarregado();
+        yield return new WaitForSeconds(4f);
         corrotinaEmExecucao = false; // Marca a corrotina como finalizada
-        corrotinaFinalizada = true; // Marca que a corrotina terminou
+        corrotinaFinalizada = true;
+
     }
 
 

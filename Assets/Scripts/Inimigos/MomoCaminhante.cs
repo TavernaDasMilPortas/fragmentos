@@ -25,7 +25,7 @@ public class MomoCaminhante : OponenteCore
     // Update is called once per frame
     void Update()
     {
-        Alvo = procurar.ProcurarAlvo();
+        procurar.ProcurarAlvo();
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();

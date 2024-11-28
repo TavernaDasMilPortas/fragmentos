@@ -18,8 +18,8 @@ public class Caminhante : OponenteCore
         this.Vida.vidaAnterior = this.Vida.vidaMax;
         this.Velocidade = 2.1f;
         this.DistanciaMinima = 1.5f;
-        this.RaioVisao = 3f;
-        this.TempoFoco = 3f;
+        this.RaioVisao = 4f;
+        this.TempoFoco = 2f;
         danoAtaqueMelle = 2;
 
     }
@@ -27,7 +27,7 @@ public class Caminhante : OponenteCore
     // Update is called once per frame
     void Update()
     {
-        Alvo = procurar.ProcurarAlvo();
+        procurar.ProcurarAlvo();
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();

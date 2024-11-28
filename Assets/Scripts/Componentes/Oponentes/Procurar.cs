@@ -7,7 +7,7 @@ public class Procurar : MonoBehaviour
     [SerializeField] public OponenteCore oponente;
     [SerializeField] private Agro agro;
 
-    public Transform ProcurarAlvo()
+    public void ProcurarAlvo()
     {
         // Primeiramente, fazemos um OverlapCircle para identificar os objetos dentro do raio de visão
         Collider2D[] colisores = Physics2D.OverlapCircleAll(transform.position, oponente.RaioVisao, oponente.Layermask);
@@ -35,22 +35,10 @@ public class Procurar : MonoBehaviour
                     Debug.Log($"Alvo encontrado: {hit.transform.name}");
                     // Ativa o agro ao encontrar o jogador
                     agro.AtivarAgro();
-                    return hit.transform;
                 }
-                else
-                {
-                    // Se o Raycast colidir com um obstáculo, desativa o agro
-                    Debug.Log("Obstáculo detectado. Perder alvo.");
-                    agro.Desagrar(); // Perde o foco
-                    return null; // Retorna null, pois o caminho está bloqueado
-                }
+
             }
         }
-
-        // Caso não encontre nenhum alvo ou se o caminho estiver bloqueado
-        Debug.Log("Perdendo alvo devido a obstáculos ou falta de visibilidade.");
-        agro.Desagrar(); // Desativa o agro se não for possível ver o jogador
-        return null;
     }
 
     private bool IgnorarObjeto(Transform obj)

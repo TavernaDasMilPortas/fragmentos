@@ -3,7 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MomoTiroScript : MonoBehaviour, Iinteragivel
+
 {
+    [SerializeField] private Sprite[] _spritesSelecionaveis = null; // Exposto no Inspector
+    [SerializeField] private int _indiceSprite = 0; // Exposto no Inspector
+    [SerializeField] private Sprite _spritePadrao= null; // Armazena o sprite original do objeto
+
+    public Sprite[] spritesSelecionaveis
+    {
+        get => _spritesSelecionaveis;
+        set => _spritesSelecionaveis = value;
+    }
+
+    public int indiceSprite
+    {
+        get => _indiceSprite;
+        set => _indiceSprite = value;
+    }
+
+    public Sprite SpritePadrao
+    {
+        get => _spritePadrao;
+        set => _spritePadrao = value;
+    }
     [SerializeField] Dialogue dialogo1;
     [SerializeField] Dialogue dialogo2;
     [SerializeField] private FlashEffect flashEffect;

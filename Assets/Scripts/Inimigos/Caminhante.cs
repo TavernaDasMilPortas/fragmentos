@@ -19,7 +19,7 @@ public class Caminhante : OponenteCore
         this.Velocidade = 2.1f;
         this.DistanciaMinima = 1.5f;
         this.RaioVisao = 4f;
-        this.TempoFoco = 2f;
+        this.TempoFoco = 5f;
         danoAtaqueMelle = 2;
 
     }
@@ -27,7 +27,7 @@ public class Caminhante : OponenteCore
     // Update is called once per frame
     void Update()
     {
-        procurar.ProcurarAlvo();
+       
         if (Vida.ConferirMudancaVida(Vida.vidaAtual, Vida.vidaAnterior) == true)
         {
             agro.AtivarAgro();
@@ -35,6 +35,7 @@ public class Caminhante : OponenteCore
         if (Alvo == null)
         {
             patrulhar.PatrulharArea();
+            procurar.ProcurarAlvo();
         }
         else
         {

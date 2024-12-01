@@ -8,6 +8,7 @@ public class Esfera : MonoBehaviour
     public float distancia = 1.4f;
     private SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
+    [SerializeField] Transform mira;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -18,6 +19,12 @@ public class Esfera : MonoBehaviour
         Vector2 direcao = (posicaoMouse - (Vector2)personagem.position).normalized;
         Vector2 novaPosicao = (Vector2)personagem.position + direcao * distancia;
         transform.position = novaPosicao;
+        mira.position = novaPosicao;
+        float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+        // Ajusta o ângulo para alinhar o arco paralelamente ao alvo
+        angulo += 90f;
+        // Atualiza a rotação do ponto de ataque
+        mira.rotation = Quaternion.Euler(0f, 0f, angulo);
         if (posicaoMouse.y > personagem.position.y)
         {
 

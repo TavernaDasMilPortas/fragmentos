@@ -65,6 +65,9 @@ TagManager:
   - name: "Paredes tr\xE1s"
     uniqueID: 3303198997
     locked: 0
+  - name: Parede porta
+    uniqueID: 1673444403
+    locked: 0
   - name: "Obstaculos tr\xE1s"
     uniqueID: 4196922119
     locked: 0

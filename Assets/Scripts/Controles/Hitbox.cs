@@ -6,10 +6,13 @@ public class Hitbox : MonoBehaviour
     public GameObject owner; // O dono da hitbox (inimigo ou jogador)
     public ValorDano dano; // Dano que a hitbox aplica
     [SerializeField] public HashSet<GameObject> alvosAtingidos = new HashSet<GameObject>(); // Alvos que já receberam dano nesta ativação
-
+    Collider2D other;
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Verifica se colidiu com uma Hurtbox
+        Atacar(other);
+    }
+    public void Atacar(Collider2D other)
+    {
         if (other.CompareTag("Hurtbox"))
         {
             var hurtbox = other.GetComponent<Hurtbox>();
@@ -51,8 +54,8 @@ public class Hitbox : MonoBehaviour
         {
             Debug.Log("[Hitbox] Colisão com um objeto que não é uma Hurtbox.");
         }
-    }
 
+    }
     public void FinalizarAtaque()
     {
         alvosAtingidos.Clear();  // Limpa a lista de alvos após o ataque

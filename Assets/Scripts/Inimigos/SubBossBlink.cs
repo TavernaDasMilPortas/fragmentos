@@ -23,7 +23,7 @@ public class SubBossBlink : OponenteCore
     public bool iniciarLuta = false;
     private void Start()
     {
-        this.Vida.vidaMax = 10;
+        this.Vida.vidaMax = 20;
         this.Vida.vidaAtual = this.Vida.vidaMax;
         this.Vida.vidaAnterior = this.Vida.vidaMax;
         this.RaioVisao = 20f;

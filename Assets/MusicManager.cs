@@ -6,6 +6,8 @@ public class MusicManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicaAmbiente;
     [SerializeField] private AudioSource musicaCombate;
+    [SerializeField] private AudioSource musicaCombateBoss;
+    [SerializeField] private SubBossBlink sbb;
 
     [Header("Configuração de Transição")]
     [SerializeField] private float tempoParaVoltarAmbiente = 3f; // Tempo após sair do combate para voltar à música de ambiente

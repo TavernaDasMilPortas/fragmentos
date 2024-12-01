@@ -40,14 +40,12 @@ public class AtaqueMelle : MonoBehaviour, Iataque
 
     public IEnumerator RealizarAtaque()
     {
+        
         isAttacking = true;
         canAttack = false;
         yield return new WaitForSeconds(0.3f);
         animadorWalker.SetBool("Atacando", false);
-  // Bloqueia novos ataques
-        yield return new WaitForSeconds(hitboxDuration);
-        hitbox.DesativarHitbox(); // Desativa a hitbox após a duração
-       
+        hitbox.DesativarHitbox();
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true; // Permite novos ataques após o cooldown
         isAttacking = false;

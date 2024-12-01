@@ -26,21 +26,22 @@ public class Interagir : MonoBehaviour
                 }
             }
         }
-
+        /*
         // Reverte o sprite do objeto anterior
         if (objetoMaisProximo != null && objetoMaisProximo != candidatoMaisProximo)
         {
             TrocarSprite(objetoMaisProximo, false); // Reverte para o sprite padrão
-        }
+        }*/
 
         // Atualiza o objeto mais próximo
         objetoMaisProximo = candidatoMaisProximo;
-
+        /*
         // Troca para o sprite selecionado do novo objeto
         if (objetoMaisProximo != null)
         {
             TrocarSprite(objetoMaisProximo, true);
         }
+        */
     }
 
     private void TrocarSprite(Iinteragivel interagivel, bool selecionar)

@@ -35,10 +35,7 @@ public class PLayer : PlayerCore
             relogio.ModificarRelogio();
         }
         andar.Deslocar();
-        if (vInteragir)
-        {
-            interagir.DetectarERealcarObjetoMaisProximo();
-        }
+ 
         if (Input.anyKeyDown)
         {
             if (Input.GetKeyDown(KeyCode.Q))
@@ -50,7 +47,7 @@ public class PLayer : PlayerCore
 
                 if (vInteragir == true && interagir.objetoMaisProximo != null)
                 {
-                    interagir.objetoMaisProximo.Interagir();   
+                    interagir.DispararInteracao(interagir.objetoMaisProximo);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Space))

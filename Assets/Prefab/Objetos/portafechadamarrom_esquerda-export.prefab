@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4972375794826475695}
   - component: {fileID: 8404740069742077876}
   - component: {fileID: 1938756666403621890}
+  - component: {fileID: 4254598067664582744}
   m_Layer: 6
   m_Name: portafechadamarrom_esquerda-export
   m_TagString: Untagged
@@ -29,13 +30,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5562028633946597097}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.939, y: -45.51, z: 0.12834293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8600290818161872741}
+  - {fileID: 5836599713870284121}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1941296349992597275
 SpriteRenderer:
@@ -75,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -98045177
-  m_SortingLayer: 7
+  m_SortingLayerID: -1963703203
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4a44d72166be5d44ab30cf690c629c54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,9 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1a3819855ed554285b5e256036021f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spritesSelecionaveis: []
-  _indiceSprite: 0
-  _spritePadrao: {fileID: 0}
+  tipoInteracao: Interagir
+  pontosPrefab:
+  - {fileID: 8600290818161872741}
+  - {fileID: 5836599713870284121}
+  estaMaisProximo: 0
   colisor: {fileID: 1938756666403621890}
   spriteRenderer: {fileID: 1941296349992597275}
   spriteFechada: {fileID: 21300000, guid: 4a44d72166be5d44ab30cf690c629c54, type: 3}
@@ -351,7 +356,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.9010601, y: 0.7397146}
+  m_Offset: {x: 0.99471474, y: -0.5515604}
   m_SpriteTilingProperty:
     border: {x: 1, y: 0.125, z: 1, w: 0.75}
     pivot: {x: 0.25816986, y: 0.3415528}
@@ -362,5 +367,85 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5841522, y: 4.2218266}
+  m_Size: {x: 2.8089218, y: 1.6392765}
   m_EdgeRadius: 0
+--- !u!114 &4254598067664582744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562028633946597097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2d5916791a8da4fae3eb5f7d57e666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingLayerAcima: "Obstaculos tr\xE1s"
+  sortingLayerAbaixo: Obstaculos frente
+  distanciaMaxima: 2
+  spriteRenderer: {fileID: 1941296349992597275}
+  jogador: {fileID: 0}
+  alvoMaisProximo: {fileID: 0}
+--- !u!1 &7807977547790273070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8600290818161872741}
+  m_Layer: 6
+  m_Name: p1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8600290818161872741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807977547790273070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4723949080571980920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9038142619178715626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5836599713870284121}
+  m_Layer: 6
+  m_Name: p2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5836599713870284121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038142619178715626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4723949080571980920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

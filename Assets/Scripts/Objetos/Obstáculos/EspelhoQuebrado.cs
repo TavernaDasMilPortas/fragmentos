@@ -3,29 +3,45 @@ using UnityEngine;
 
 public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
 {
+    [SerializeField] private string tipoInteracao = "Abrir Porta"; // Texto que descreve a interação
 
-    [SerializeField] private Sprite[] _spritesSelecionaveis; // Exposto no Inspector
-    [SerializeField] private int _indiceSprite = 0; // Exposto no Inspector
-    [SerializeField] private Sprite _spritePadrao; // Armazena o sprite original do objeto
-
-    public Sprite[] spritesSelecionaveis
+    [Header("Configurações de Ponto de Prefab")]
+    [SerializeField] private Transform[] pontosPrefab; // Pontos para o spawn do prefab de indicação
+    [SerializeField] private bool estaMaisProximo = false; // Indica se este objeto é o mais próximo do jogador
+    private bool estaInteragindo = false;
+    // Implementação das propriedades da interface
+    public bool EstaInteragindo
     {
-        get => _spritesSelecionaveis;
-        set => _spritesSelecionaveis = value;
+        get => estaInteragindo;
+        set
+        {
+            estaInteragindo = value;
+        }
+    }
+    // Implementação das propriedades da interface
+    public bool EstaMaisProximo
+    {
+        get => estaMaisProximo;
+        set
+        {
+            estaMaisProximo = value;
+        }
     }
 
-    public int indiceSprite
+    public Transform[] PontosPrebab
     {
-        get => _indiceSprite;
-        set => _indiceSprite = value;
+        get => pontosPrefab;
+        set => pontosPrefab = value; // Caso necessário permitir redefinir os pontos externamente
     }
 
-    public Sprite SpritePadrao
+    public string TipoInteracao
     {
-        get => _spritePadrao;
-        set => _spritePadrao = value;
+        get => tipoInteracao;
+        set
+        {
+            tipoInteracao = value;
+        }
     }
-
     [SerializeField] private ItemCore itemCore; // Referência ao ItemCore a ser verificado no inventário
     [SerializeField] private Inventory inventario; // Referência ao inventário
     [SerializeField] private Transform spawnLocation; // Local de spawn do prefab
@@ -70,7 +86,6 @@ public class EspelhoQuebrado : MonoBehaviour, Iinteragivel
             inventario.AtualizarQuantidadeOuRemover(slotDoCaco, -1);
             fragmentosNoEspelho++;
             sprite.AtualizarSprite();
-            indiceSprite++;
         }
 
         Debug.Log($"Fragmentos no espelho: {fragmentosNoEspelho}/{maxFragmentos}");

@@ -5,63 +5,81 @@ using UnityEngine;
 public class MomoTiroScript : MonoBehaviour, Iinteragivel
 
 {
-    [SerializeField] private Sprite[] _spritesSelecionaveis = null; // Exposto no Inspector
-    [SerializeField] private int _indiceSprite = 0; // Exposto no Inspector
-    [SerializeField] private Sprite _spritePadrao= null; // Armazena o sprite original do objeto
+    [SerializeField] private string tipoInteracao = "Abrir Porta"; // Texto que descreve a interação
 
-    public Sprite[] spritesSelecionaveis
+    [Header("Configurações de Ponto de Prefab")]
+    [SerializeField] private Transform[] pontosPrefab; // Pontos para o spawn do prefab de indicação
+    [SerializeField] private bool estaMaisProximo = false; // Indica se este objeto é o mais próximo do jogador
+    private bool estaInteragindo = false;
+    // Implementação das propriedades da interface
+    public bool EstaInteragindo
     {
-        get => _spritesSelecionaveis;
-        set => _spritesSelecionaveis = value;
+        get => estaInteragindo;
+        set
+        {
+            estaInteragindo = value;
+        }
+    }
+    // Implementação das propriedades da interface
+    public bool EstaMaisProximo
+    {
+        get => estaMaisProximo;
+        set
+        {
+            estaMaisProximo = value;
+        }
     }
 
-    public int indiceSprite
+    public Transform[] PontosPrebab
     {
-        get => _indiceSprite;
-        set => _indiceSprite = value;
+        get => pontosPrefab;
+        set => pontosPrefab = value; // Caso necessário permitir redefinir os pontos externamente
     }
 
-    public Sprite SpritePadrao
+    public string TipoInteracao
     {
-        get => _spritePadrao;
-        set => _spritePadrao = value;
+        get => tipoInteracao;
+        set
+        {
+            tipoInteracao = value;
+        }
     }
     [SerializeField] Dialogue dialogo1;
-    [SerializeField] Dialogue dialogo2;
+    [SerializeField] public Dialogue dialogo2;
     [SerializeField] private FlashEffect flashEffect;
     [SerializeField] private PLayer player;
     [SerializeField] private GameObject circulo;
     [SerializeField] private DisparoProjetil disparar;
     [SerializeField] private SpriteRenderer npcSpriteRenderer;
-    [SerializeField] private EventosFase1 eventos;
+
     private bool interacao1Travada = false;
-    public void Interagir()
+    private void Update()
     {
-        if (!interacao1Travada)
+        if (dialogo2.isEnded)
         {
-            dialogo1.Interact();
-        }
-       
-        if (dialogo1.isEnded && !interacao1Travada)
-        {
-            interacao1Travada = true;
-            FundirPersonagens();
-            player.fragmentoAtual.VA = true;
-            circulo.SetActive(true);
-            disparar.enabled = true;
-            DesaparecerNPC();
- 
-        }
-        if (interacao1Travada)
-        {
-            dialogo2.Interact();
-        }
-        if (dialogo2.isEnded) 
-        {
-            eventos.AtivarCaminhantes();
             Destroy(this.gameObject);
         }
+    }
+    public void Interagir()
+    {
+        if (!dialogo1.EstaInteragindo && !dialogo2.EstaInteragindo)
+        {
+            if (!dialogo1.isEnded)
+            {
+                dialogo1.EstaInteragindo = true;
+            }
+            if (dialogo1.isEnded)
+            {
+                interacao1Travada = true;
+                FundirPersonagens();
+                player.fragmentoAtual.VA = true;
+                circulo.SetActive(true);
+                disparar.enabled = true;
+                DesaparecerNPC();
+                dialogo2.EstaInteragindo = true;
+            }
 
+        }
     }
     // Método para disparar o evento de fusão
     public void FundirPersonagens()

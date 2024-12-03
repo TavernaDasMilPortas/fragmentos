@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7281703975440418544}
   - component: {fileID: 8300411380450908632}
-  - component: {fileID: 5088245061839230793}
   - component: {fileID: 2717149263795773868}
   - component: {fileID: 3873325931907231079}
   m_Layer: 8
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -98045177
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 676008111, guid: 716b6f2e9e6cc754c83de9fc5ce42252, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,24 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5088245061839230793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3492414848297795397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e2d5916791a8da4fae3eb5f7d57e666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayerAcima: "Obstaculos tr\xE1s"
-  sortingLayerAbaixo: Obstaculos frente
-  distanciaMaxima: 2
-  spriteRenderer: {fileID: 0}
-  jogador: {fileID: 0}
-  alvoMaisProximo: {fileID: 0}
 --- !u!61 &2717149263795773868
 BoxCollider2D:
   m_ObjectHideFlags: 0

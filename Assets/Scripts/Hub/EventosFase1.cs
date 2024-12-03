@@ -8,6 +8,8 @@ public class EventosFase1 : MonoBehaviour
     [SerializeField] SpawnOponente spawnInicial;
     [SerializeField] GerenciadorDeMissoes gerenciadorDeMissoes;
     [SerializeField] Missao missao1;
+    [SerializeField] MomoTiroScript momoTiro;
+    bool EventoAuditorio = false;
     public void AtivarCaminhantes()
     {
 
@@ -19,6 +21,14 @@ public class EventosFase1 : MonoBehaviour
     {
 
   
+    }
+    private void Update()
+    {
+        if (momoTiro.dialogo2.isEnded && !EventoAuditorio)
+        {
+            AtivarCaminhantes();
+            EventoAuditorio = true;
+        }
     }
 
 }

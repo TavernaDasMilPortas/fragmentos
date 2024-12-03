@@ -15,7 +15,11 @@ public class GerenciarVida : MonoBehaviour
 
     private void Start()
     {
-        imagem.gameObject.SetActive(false);
+        if (imagem != null)
+        {
+            imagem.gameObject.SetActive(false);
+        }
+        
     }
     void Update()
     {

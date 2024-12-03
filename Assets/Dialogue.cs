@@ -26,6 +26,7 @@ public class Dialogue : MonoBehaviour
 
     [Header("Interaction Settings")]
     public bool requiresInteraction = true; // Determina se o diálogo precisa de interação para começar
+    public bool EstaInteragindo = false; // Variável que indica se o jogador está interagindo com o diálogo
 
     void Start()
     {
@@ -37,28 +38,29 @@ public class Dialogue : MonoBehaviour
         iconD.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Método chamado por um script externo para gerenciar a interação.
-    /// </summary>
-    public void Interact()
+    void Update()
     {
-        if (!isDialogueActive)
+        // Verifica se o diálogo está ativo e se a tecla 'E' foi pressionada para interagir
+        if (EstaInteragindo && Input.GetKeyDown(KeyCode.E))
         {
-            // Inicia o diálogo apenas se estiver configurado para interação
-            if (requiresInteraction)
+            if (!isDialogueActive)
             {
-                StartDialogue();
+                // Inicia o diálogo
+                if (requiresInteraction)
+                {
+                    StartDialogue();
+                }
             }
-        }
-        else if (isTyping)
-        {
-            // Completa a linha atual instantaneamente se a digitação estiver em andamento
-            CompleteCurrentLine();
-        }
-        else if (dialogueText.text == dialogueLines[index].text)
-        {
-            // Avança para a próxima linha se a digitação atual estiver completa
-            NextLine();
+            else if (isTyping)
+            {
+                // Completa a linha atual instantaneamente se a digitação estiver em andamento
+                CompleteCurrentLine();
+            }
+            else if (dialogueText.text == dialogueLines[index].text)
+            {
+                // Avança para a próxima linha se a digitação atual estiver completa
+                NextLine();
+            }
         }
     }
 
@@ -68,6 +70,7 @@ public class Dialogue : MonoBehaviour
     public void StartDialogueByCode()
     {
         requiresInteraction = false; // Desativa a necessidade de interação
+        EstaInteragindo = true;
         StartDialogue();
     }
 
@@ -80,6 +83,7 @@ public class Dialogue : MonoBehaviour
         dialogueText.text = ""; // Limpa o texto
         dialoguePanel.SetActive(true); // Ativa o painel de diálogo
         isDialogueActive = true;
+        EstaInteragindo = true; // Inicia a interação com o diálogo
         isEnded = false; // Marca que o diálogo está ativo
         UpdateSpeakerVisual(dialogueLines[index]); // Mostra o ícone e sprite do primeiro speaker
         typingCoroutine = StartCoroutine(Typing());
@@ -96,16 +100,10 @@ public class Dialogue : MonoBehaviour
             dialogueText.text = ""; // Limpa o texto para a nova linha
             UpdateSpeakerVisual(dialogueLines[index]); // Atualiza o ícone e sprite do speaker
             typingCoroutine = StartCoroutine(Typing()); // Inicia a digitação da próxima linha
-
-            // Após a primeira linha, muda para interação manual, se necessário
-            if (!requiresInteraction && index == 1)
-            {
-                requiresInteraction = true;
-            }
         }
         else
         {
-            isEnded = true;
+
             EndDialogue(); // Encerra o diálogo se for a última linha
         }
     }
@@ -122,6 +120,8 @@ public class Dialogue : MonoBehaviour
         iconC.gameObject.SetActive(false);
         iconD.gameObject.SetActive(false);
         isDialogueActive = false; // Marca que o diálogo não está ativo
+        EstaInteragindo = false; // Finaliza a interação
+        isEnded = true;
     }
 
     /// <summary>

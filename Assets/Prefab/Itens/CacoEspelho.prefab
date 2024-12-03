@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &180988447624219360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5218115530928498951}
+  m_Layer: 10
+  m_Name: p2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5218115530928498951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180988447624219360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.28, y: 0.59, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2441923546792457145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2932053776621106325
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +63,9 @@ Transform:
   m_LocalPosition: {x: -10.79, y: 0.18, z: 0}
   m_LocalScale: {x: 0.9661, y: 0.9436, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1712448616418544325}
+  - {fileID: 5218115530928498951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &783348713779772691
@@ -74,7 +107,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1473067895
-  m_SortingLayer: 6
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 2068187815, guid: b6ca7017d3562f14c976542f188b7a41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,7 +140,7 @@ MonoBehaviour:
   - {fileID: -408841929, guid: b6ca7017d3562f14c976542f188b7a41, type: 3}
   - {fileID: 904345149, guid: b6ca7017d3562f14c976542f188b7a41, type: 3}
   - {fileID: -1532334058, guid: b6ca7017d3562f14c976542f188b7a41, type: 3}
-  indice: 0
+  indice: 3
 --- !u!58 &2025066612977381231
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -155,4 +188,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a1591654ed1ea41aea0034451f6708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoInteracao: Coletar
+  pontosPrefab:
+  - {fileID: 1712448616418544325}
+  - {fileID: 5218115530928498951}
+  estaMaisProximo: 0
   itemData: {fileID: 11400000, guid: 8d160fc7003da2d4b9a888e0099be01f, type: 2}
+--- !u!1 &4947873011882145189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712448616418544325}
+  m_Layer: 10
+  m_Name: p1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712448616418544325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947873011882145189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.96, y: 0.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2441923546792457145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

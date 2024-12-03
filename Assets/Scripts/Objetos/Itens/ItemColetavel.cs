@@ -3,26 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ItemColetavel : MonoBehaviour, Iinteragivel
 {
-    [SerializeField] private Sprite[] _spritesSelecionaveis; // Exposto no Inspector
-    [SerializeField] private int _indiceSprite = 0; // Exposto no Inspector
-    [SerializeField] private Sprite _spritePadrao; // Armazena o sprite original do objeto
+    [SerializeField] private string tipoInteracao = "Abrir Porta"; // Texto que descreve a interação
 
-    public Sprite[] spritesSelecionaveis
+    [Header("Configurações de Ponto de Prefab")]
+    [SerializeField] private Transform[] pontosPrefab; // Pontos para o spawn do prefab de indicação
+    [SerializeField] private bool estaMaisProximo = false; // Indica se este objeto é o mais próximo do jogador
+    private bool estaInteragindo = false;
+    // Implementação das propriedades da interface
+    public bool EstaInteragindo
     {
-        get => _spritesSelecionaveis;
-        set => _spritesSelecionaveis = value;
+        get => estaInteragindo;
+        set
+        {
+            estaInteragindo = value;
+        }
+    }
+    public bool EstaMaisProximo
+    {
+        get => estaMaisProximo;
+        set
+        {
+            estaMaisProximo = value;
+        }
     }
 
-    public int indiceSprite
+    public Transform[] PontosPrebab
     {
-        get => _indiceSprite;
-        set => _indiceSprite = value;
+        get => pontosPrefab;
+        set => pontosPrefab = value; // Caso necessário permitir redefinir os pontos externamente
     }
 
-    public Sprite SpritePadrao
+    public string TipoInteracao
     {
-        get => _spritePadrao;
-        set => _spritePadrao = value;
+        get => tipoInteracao;
+        set
+        {
+            tipoInteracao = value;
+        }
     }
     [SerializeField] private ItemCore itemData; // Referência ao ScriptableObject do item
 

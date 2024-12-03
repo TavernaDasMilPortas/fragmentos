@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface Iinteragivel
 {
-    public Sprite[] spritesSelecionaveis { get; set; }
-    public int indiceSprite { get; set; }
-    public Sprite SpritePadrao { get; set; } // Adicionada a propriedade para armazenar o sprite padrão
-    public void Interagir();
+    // Método que define a interação do objeto
+    void Interagir();
+
+    // Propriedade para indicar se o objeto é o mais próximo
+    bool EstaMaisProximo { get; set; }
+    public Transform[] PontosPrebab { get; set; }
+    public string TipoInteracao { get; set; }
+    public bool EstaInteragindo { get; set; }
+
 }
